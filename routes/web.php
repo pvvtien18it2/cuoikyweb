@@ -21,3 +21,8 @@ Route::get('dangnhap',['as'=>'getdangnhap','uses'=>'DangNhapController@dangnhap'
 Route::post('postdangnhap',['as'=>'postdangnhap','uses'=>'DangNhapController@postdangnhap']);
 
 
+Route::get('manager',function (){
+    return view('dashboard.manager.manager');
+}
+);
+

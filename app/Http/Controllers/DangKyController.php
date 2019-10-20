@@ -3,26 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\nhanvien;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\DangKyRequest;
 class DangKyController extends Controller
 {
     public function dangky(){
-        return view('dangky');
+        return view('member.dangky');
     }
     public function  postdangky(DangKyRequest $request){
-        $member = new User();
+        $member = new nhanvien();
         if ($request->pass === $request->re_pass){
             $member->name = $request->name;
+            $member->phone = $request->phone;
             $member->email = $request->email;
             $member->password = Hash::make($request->pass);
             $member->remember_token = $request->_token;
+            $member->admin = $request->admin;
             $member->save();
             return redirect('/dangnhap');
         }
         else{
-            return view('dangky');
+            return view('member.dangky');
         }
     }
 }

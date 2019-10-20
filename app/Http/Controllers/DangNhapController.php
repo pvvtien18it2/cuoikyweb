@@ -8,7 +8,7 @@ use App\Http\Requests\DangNhapRequest;
 class DangNhapController extends Controller
 {
     public function dangnhap(){
-        return view('dangnhap');
+        return view('member.dangnhap');
     }
     public function postdangnhap(DangNhapRequest $request){
         $arr = array('name'=> $request->your_name,
@@ -18,7 +18,7 @@ class DangNhapController extends Controller
             echo 'Đăng nhập thành công';
         }
         else{
-            return view('dangnhap',['error'=>'Tên đăng nhập hoặc mật khẩu không đúng']);
+            return view('member.dangnhap',['error'=>'Tên đăng nhập hoặc mật khẩu không đúng']);
         }
     }
 }
