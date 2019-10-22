@@ -22,7 +22,7 @@
             <div class="signup-content">
                 <div class="signup-form">
                     <h2 class="form-title">Sign up</h2>
-                    <form action="{!! route('postdangky') !!}" method="POST" class="register-form" id="register-form">
+                    <form action="{!! route('nhanvien.store') !!}" method="POST" class="register-form" id="register-form">
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         <div class="form-group">
                             <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>

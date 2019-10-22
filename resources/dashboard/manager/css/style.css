@@ -1,11 +1,19 @@
-
-#contend{
-    text-align: center;
-    font-size: 100px;
+*{
+    margin: auto;
+    padding: 0px;
 }
-#table_control tr th a {
+#row_contend{
+    background-color: rgba(11,34,54,0.41);
+    height: 150px;
+}
+#row_contend p{
+    font-size: 100px;
+    text-align: center;
+}
+#row_show a{
     text-decoration: none;
 }
-#table_show{
-    margin-top: -73px;
+#table_show {
+    margin-top: 3%;
+    border: #fb3abc solid 2px;
 }

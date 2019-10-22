@@ -33,6 +33,6 @@ class CreateNhanviensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nhanviens');
+        Schema::dropIfExists('nhanvien');
     }
 }

@@ -23,6 +23,5 @@ Route::post('postdangnhap',['as'=>'postdangnhap','uses'=>'DangNhapController@pos
 
 Route::get('manager',function (){
     return view('dashboard.manager.manager');
-}
-);
-
+});
+Route::resource('nhanvien','NhanVienController');
