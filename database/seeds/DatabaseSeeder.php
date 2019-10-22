@@ -10,8 +10,22 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
+{
+    $this->call(phongInsertSeeder);
+
+}
+
+}
+
+class phongInsertSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
     {
-        // $this->call(UsersTableSeeder::class);
         DB::table('phong')->insert([
             ['maP'=>'P101','tenP'=>'P101','loaiP'=>'Bình dân','giaP/hour'=>60000,'giaP/day'=>150000,'tinhtrang'=>'Đã dọn','maDV'=>'','maNV'=>1,'trong'=>1],
             ['maP'=>'P102','tenP'=>'P102','loaiP'=>'Bình dân','giaP/hour'=>60000,'giaP/day'=>150000,'tinhtrang'=>'Chưa dọn','maDV'=>'','maNV'=>1,'trong'=>1],
@@ -68,6 +82,7 @@ class DatabaseSeeder extends Seeder
             ['maP'=>'P905','tenP'=>'P905','loaiP'=>'Royal','giaP/hour'=>500000,'giaP/day'=>2000000,'tinhtrang'=>'Chưa dọn','maDV'=>'','maNV'=>2,'trong'=>0],
             ['maP'=>'P906','tenP'=>'P906','loaiP'=>'Royal','giaP/hour'=>500000,'giaP/day'=>2000000,'tinhtrang'=>'Đã dọn','maDV'=>'','maNV'=>2,'trong'=>1],
         ]);
+
     }
 
 }
