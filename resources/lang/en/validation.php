@@ -14,7 +14,7 @@ return [
     */
 
     'accepted' => 'The :attribute must be accepted.',
-    'active_url' => 'The :attribute is not a valid URL.',
+    'active_asset' => 'The :attribute is not a valid asset.',
     'after' => 'The :attribute must be a date after :date.',
     'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
     'alpha' => 'The :attribute may only contain letters.',
@@ -115,7 +115,7 @@ return [
     'timezone' => 'The :attribute must be a valid zone.',
     'unique' => 'The :attribute has already been taken.',
     'uploaded' => 'The :attribute failed to upload.',
-    'url' => 'The :attribute format is invalid.',
+    'asset' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
     /*

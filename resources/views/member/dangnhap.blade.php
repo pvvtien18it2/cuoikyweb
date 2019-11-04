@@ -7,10 +7,10 @@
     <title>Sign Up Form by Colorlib</title>
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href="{!! url('resources/member/fonts/material-icon/css/material-design-iconic-font.min.css') !!}">
+    <link rel="stylesheet" href="{!! asset('resources/member/fonts/material-icon/css/material-design-iconic-font.min.css') !!}">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="{!! url('resources/member/css/style.css') !!}">
+    <link rel="stylesheet" href="{!! asset('resources/member/css/style.css') !!}">
 </head>
 <body>
 
@@ -19,12 +19,11 @@
         <div class="container">
             <div class="signin-content">
                 <div class="signin-image">
-                    <figure><img src="{!! url('resources/member/images/signin-image.jpg') !!}" alt="sing up image"></figure>
-                    <a href="{!! route('getdangky') !!}" class="signup-image-link">Create an account</a>
+                    <figure><img src="{!! asset('resources/member/images/signin-image.jpg') !!}" alt="sing up image"></figure>
+                    <a href="{!! route('getdangky') !!}" class="signup-image-link">Tạo tài khoản mới</a>
                 </div>
 
                 <div class="signin-form">
-                    <h2 class="form-title">Sign up</h2>
                     <form action="{!! route('postdangnhap') !!}" method="POST" class="register-form" id="login-form">
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         @if (isset($error))
@@ -41,7 +40,7 @@
                             {!! $errors->first('your_pass') !!}
                         </div>
                         <div class="form-group form-button">
-                            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            <input type="submit" name="signin" id="signin" class="form-submit" value="Đăng nhập"/>
                         </div>
                     </form>
                 </div>
@@ -53,7 +52,7 @@
 </div>
 
 <!-- JS -->
-<script src="{!! url('resources/member/vendor/jquery/jquery.min.js') !!}"></script>
-<script src="{!! url('resources/member/js/main.js') !!}"></script>
+<script src="{!! asset('public/member/vendor/jquery/jquery.min.js') !!}"></script>
+<script src="{!! asset('public/member/js/main.js') !!}"></script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

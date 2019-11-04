@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\DangKyRequest;
-use App\nhanvien;
 use App\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class NhanVienController extends Controller
@@ -16,7 +15,7 @@ class NhanVienController extends Controller
      */
     public function index()
     {
-        $nhanvien = nhanvien::all();
+        $nhanvien = User::all();
         return view('dashboard.manager.manager',compact('nhanvien'));
     }
 
@@ -31,7 +30,7 @@ class NhanVienController extends Controller
     }
     public function store(DangKyRequest $request)
     {
-        $nhanvien = new nhanvien();
+        $nhanvien = new User();
         if ($request->pass === $request->re_pass){
             $nhanvien->name = $request->name;
             $nhanvien->phone = $request->phone;
@@ -40,7 +39,7 @@ class NhanVienController extends Controller
             $nhanvien->remember_token = $request->_token;
             $nhanvien->admin = $request->admin;
             $nhanvien->save();
-            return redirect().route('nhanvien.index');
+            return redirect()->route('manager.index');
         }
         else{
             return view('member.dangky');
@@ -89,8 +88,12 @@ class NhanVienController extends Controller
      */
     public function destroy($id)
     {
-        $nhanvien = nhanvien::findOrFail($id);
+        $nhanvien = User::findOrFail($id);
         $nhanvien->delete();
-        return redirect()->route('nhanvien.index');
+        return redirect()->route('manager.index');
+    }
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
     }
 }

@@ -1,17 +1,28 @@
-*{
+* {
     margin: auto;
     padding: 0px;
+}
+#show_row_col-md-2{
+    position: absolute ;
+    top:21%
+}
+#show_row_col-md-10{
+    position: absolute ;
+    left:16%
 }
 #row_contend{
     background-color: rgba(11,34,54,0.41);
     height: 150px;
 }
 #row_contend p{
-    font-size: 100px;
+    font-size: 10%;
     text-align: center;
 }
 #row_show a{
     text-decoration: none;
+}
+a:hover{
+    background-color: #ff25f5;
 }
 #table_show {
     margin-top: 3%;

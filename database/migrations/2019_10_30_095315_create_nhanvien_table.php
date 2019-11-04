@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNhanviensTable extends Migration
+class CreateNhanvienTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,15 @@ class CreateNhanviensTable extends Migration
     public function up()
     {
         Schema::create('nhanvien', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name')->unique();
-            $table->integer('phone');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->integer('admin');
-            $table->rememberToken();
-            $table->timestamps();
+                $table->bigIncrements('id');
+                $table->string('name')->unique();
+                $table->integer('phone');
+                $table->string('email')->unique();
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('password');
+                $table->integer('admin');
+                $table->rememberToken();
+                $table->timestamps();
         });
     }
 

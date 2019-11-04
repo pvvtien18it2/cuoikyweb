@@ -56,7 +56,7 @@ return [
 
         'slack' => [
             'driver' => 'slack',
-            'url' => env('LOG_SLACK_WEBHOOK_URL'),
+            'asset' => env('LOG_SLACK_WEBHOOK_asset'),
             'username' => 'Laravel Log',
             'emoji' => ':boom:',
             'level' => 'critical',
@@ -67,7 +67,7 @@ return [
             'level' => 'debug',
             'handler' => SyslogUdpHandler::class,
             'handler_with' => [
-                'host' => env('PAPERTRAIL_URL'),
+                'host' => env('PAPERTRAIL_asset'),
                 'port' => env('PAPERTRAIL_PORT'),
             ],
         ],

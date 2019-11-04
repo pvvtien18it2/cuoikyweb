@@ -21,10 +21,11 @@ class DangKyController extends Controller
             $member->remember_token = $request->_token;
             $member->admin = $request->admin;
             $member->save();
-            return redirect('/dangnhap');
+            return redirect()->route('getdangky');
         }
         else{
             return view('member.dangky');
         }
     }
 }
+

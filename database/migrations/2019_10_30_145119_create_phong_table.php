@@ -15,16 +15,18 @@ class CreatePhongTable extends Migration
     {
         Schema::create('phong', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('maP')->unique();
+            $table->string('maP');
             $table->string('tenP')->unique();
-            $table->string('loaiP')->unique();
+            $table->string('loaiP');
             $table->integer('giaP/hour');
             $table->integer('giaP/day');
             $table->string('tinhtrang');
             $table->string('maDV');
             $table->string('maNV');
             $table->integer('trong');
+            $table->integer('count')->default(0);
             $table->timestamps();
+
         });
     }
 

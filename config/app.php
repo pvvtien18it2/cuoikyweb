@@ -43,18 +43,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application URL
+    | Application asset
     |--------------------------------------------------------------------------
     |
-    | This URL is used by the console to properly generate URLs when using
+    | This asset is used by the console to properly generate assets when using
     | the Artisan command line tool. You should set this to the root of
     | your application so that it is used when running Artisan tasks.
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'asset' => env('APP_asset', 'http://localhost'),
 
-    'asset_url' => env('ASSET_URL', null),
+    'asset_asset' => env('ASSET_asset', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -222,7 +222,7 @@ return [
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'Str' => Illuminate\Support\Str::class,
-        'URL' => Illuminate\Support\Facades\URL::class,
+        'asset' => Illuminate\Support\Facades\asset::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
