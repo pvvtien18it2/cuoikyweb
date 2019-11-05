@@ -41,10 +41,10 @@
                     <td>
                         <lable>Tình trạng</lable>
                         @if ($data->tinhtrang =='1')
-                            <a id="btnTinhTrang" onclick="change()" class="btn btn-success" style="width: 200px; text-align: center" value="1">Clead</a>
+                            <button type="button" id="btnTinhTrang" onclick="changeTinhTrang()" class="btn btn-success" style="width: 200px; text-align: center" value="1">Đã dọn</button>
 
                         @elseif($data->tinhtrang =='0')
-                            <a id="btnTinhTrang" onclick="change()" class="btn btn-danger" style="width: 200px; text-align: center">Dirty</a>
+                            <button type="button" id="btnTinhTrang" onclick="changeTinhTrang()" class="btn btn-danger" style="width: 200px; text-align: center">Chưa dọn</button>
 
                         @endif
                     </td>
@@ -52,6 +52,13 @@
                 <tr>
                 <td>
                     <lable>Trống</lable>
+                    @if ($data->tinhtrang =='1')
+                        <button type="button" id="btntrong" onclick="changeTrong()" class="btn btn-success" style="width: 200px; text-align: center" value="1">Trống</button>
+
+                    @elseif($data->tinhtrang =='0')
+                        <button type="button" id="btntrong" onclick="changeTrong()" class="btn btn-danger" style="width: 200px; text-align: center">Không trống</button>
+
+                    @endif
                 </td>
                 </tr>
                 <tr>
@@ -64,15 +71,26 @@
     </div>
 </body>
 <script>
-    function change() {
+    function changeTinhTrang() {
         if (document.getElementById('btnTinhTrang').value == 1) {
             document.getElementById('btnTinhTrang').value = 0;
             document.getElementById('btnTinhTrang').className = 'btn btn-danger';
-            document.getElementById('btnTinhTrang').innerHTML = 'Dirty';
+            document.getElementById('btnTinhTrang').innerHTML = 'Chưa dọn';
         } else {
             document.getElementById('btnTinhTrang').value = 1;
             document.getElementById('btnTinhTrang').className = 'btn btn-success';
-            document.getElementById('btnTinhTrang').innerHTML = 'Clean';
+            document.getElementById('btnTinhTrang').innerHTML = 'Đã dọn';
+        }
+    }
+    function changeTrong() {
+        if (document.getElementById('btntrong').value == 1) {
+            document.getElementById('btntrong').value = 0;
+            document.getElementById('btntrong').className = 'btn btn-danger';
+            document.getElementById('btntrong').innerHTML = 'Không trống';
+        } else {
+            document.getElementById('btntrong').value = 1;
+            document.getElementById('btntrong').className = 'btn btn-success';
+            document.getElementById('btntrong').innerHTML = 'Trống';
         }
     }
 </script>

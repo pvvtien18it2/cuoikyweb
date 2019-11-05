@@ -4,18 +4,21 @@
 }
 #show_row_col-md-2{
     position: absolute ;
-    top:21%
+    top:22%;
 }
 #show_row_col-md-10{
     position: absolute ;
-    left:16%
+    left:16%;
 }
 #row_contend{
     background-color: rgba(11,34,54,0.41);
-    height: 150px;
+
 }
-#row_contend p{
-    font-size: 10%;
+#row_contend_col {
+    width: 110%;
+}
+#row_contend h2{
+    font-size: 500%;
     text-align: center;
 }
 #row_show a{

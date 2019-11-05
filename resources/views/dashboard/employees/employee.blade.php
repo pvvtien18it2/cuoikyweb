@@ -13,11 +13,11 @@
 <body>
 <div class="container-fluid">
     <div class="row" id="row_contend">
-        <p>Trang điều khiển dành cho nhân viên</p>
+        <h2 style="font-size: 100%">Trang điều khiển dành cho nhân viên</h2>
         <a href="{!! route('getlogout') !!}"><button class="btn btn-danger">Đăng xuất</button></a>
     </div>
     <div class="row" id="row_show">
-        <div class="col-md-2">
+        <div id="show_row_col-md-2" class="col-md-2" style="position: absolute ;top:21%;">
             <table class="table " id="table_control">
                 <tr>
                     <th><a href="" ><p>Quản lý phòng</p></a></th>
@@ -33,7 +33,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-md-10">
+        <div id="show_row_col-md-10" class="col-md-10" style="   position: absolute ;left:16%;">
             <table class="table table-striped table-hover table-bordered" id="table_show">
                 <tread>
                 <tr>
