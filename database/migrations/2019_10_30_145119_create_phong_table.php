@@ -18,8 +18,8 @@ class CreatePhongTable extends Migration
             $table->string('maP');
             $table->string('tenP')->unique();
             $table->string('loaiP');
-            $table->integer('giaP/hour');
-            $table->integer('giaP/day');
+            $table->integer('hour');
+            $table->integer('day');
             $table->string('tinhtrang');
             $table->string('maDV');
             $table->string('maNV');

@@ -1,0 +1,14 @@
+.container #row_card{
+    margin-top: 2%;
+    max-width: 1500px;
+    max-height: 100%
+}
+.container #row_card #card_body{
+    height: 220px
+}
+.container #row_card #card_text{
+    height: 100px
+}
+.container #paginate{
+    margin: 4px auto;
+}

@@ -1,0 +1,53 @@
+*{
+    margin: auto;
+    padding: 0px;
+}
+
+#row_content{
+    height: 20%;
+    background-color:  aqua;
+    margin-bottom: 10px;
+}
+h2{
+    font-size: 500%;
+    text-align: center;
+}
+
+#btndangxuat{
+
+    width: 40%;
+    margin-left: -50%  ;
+    text-align: center;
+}
+#table_contol a{
+    text-decoration: none;
+}
+#table_contol p{
+    text-decoration: none;
+    text-align: left;
+}
+#show_row_col-md-2{
+    /*position: absolute ;*/
+    /*top: 16%;*/
+    /*!*left: 5%;*!*/
+    /*bottom: 50%;*/
+    margin-top:2.6%;
+    right: 42%;
+}
+#show_row_col-md-10{
+    margin-top: 2.5%;
+    position: absolute ;
+    left:16%;
+}
+#col_data_button button{
+    width: 55%;
+    text-align: center;
+}
+#row_show{
+    text-align: center;
+}
+#col_data{
+    text-align: center;
+}
+
+

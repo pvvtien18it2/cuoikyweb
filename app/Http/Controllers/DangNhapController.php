@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\phong;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DangNhapRequest;
 class DangNhapController extends Controller
@@ -19,10 +17,10 @@ class DangNhapController extends Controller
 //            return view('dashboard.manager.manager');
             $user = Auth::user();
             if ($user->admin == 1){
-                return redirect('manager');
+                return redirect('manager/manager');
             }
             else{
-                return redirect('employee');
+                return redirect('employee/employee');
             }
         }
         else{
