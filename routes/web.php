@@ -46,7 +46,7 @@ Route::prefix("/employee")->middleware(['employee','auth'])->group(function(){
     Route::get('/thanhtoan/{id}','RoomController@thanhtoan')->name('employee.thanhtoan');
 });
 Route::get('/', function () {
-    return view('theme.index');
+    return view('member.dangnhap');
 });
 
 //Đăng ký
