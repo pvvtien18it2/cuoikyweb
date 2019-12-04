@@ -18,12 +18,14 @@ class CreatePhongTable extends Migration
             $table->string('maP');
             $table->string('tenP')->unique();
             $table->string('loaiP');
+            $table->string('ghichu')->nullable();
             $table->integer('hour');
             $table->integer('day');
             $table->string('tinhtrang');
             $table->string('maDV');
             $table->string('maNV');
             $table->integer('trong');
+            $table->integer('tang');
             $table->integer('count')->default(0);
             $table->timestamps();
 

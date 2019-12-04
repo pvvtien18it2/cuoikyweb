@@ -96,4 +96,7 @@ class NhanVienController extends Controller
         Auth::logout();
         return redirect('/');
     }
+    public function doanhthu(){
+        return view('dashboard.manager.balance');
+    }
 }

@@ -1,0 +1,18 @@
+/* table{
+    margin: auto;
+} */
+td{
+    /* padding: 40px; */
+    margin: auto;
+}
+
+button{
+    width: 170px;
+    /* padding: 50px; */
+    margin-left: 50px;
+}
+#btn-action{
+    width: 110px;
+    margin: auto;
+}
+

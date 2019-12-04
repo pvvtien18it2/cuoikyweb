@@ -93,7 +93,11 @@
                     @endforeach
 
                     </table>
-                    <button type="submit" class="btn btn-danger" style=" text-align: center; width: 30% ; margin-left: 30%">Thêm dịch vụ</button>
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-left:10%">
+                        <button type="submit" class="btn btn-success" style=" text-align: center; width: 30% ; margin-left: 30%">Thêm dịch vụ</button>
+                        <a href="{{route('employee.quanly')}}" class="btn btn-danger" style="margin-left: 20px">Hủy</a>
+                    </div>
+
                     </form>
     </div>
 </div>

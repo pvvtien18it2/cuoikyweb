@@ -31,9 +31,9 @@
                     <tr>
                         <th><a href="{!!route('employee.index')!!}" ><p>Danh sách phòng trống</p></a></th>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <th><a href="{!!route('employee.tinhtien')!!}" ><p>Tính tiền</p></a></th>
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <th><a href="{!!route('employee.quanly')!!}" ><p>Quản lý phòng</p></a></th>
                     </tr>

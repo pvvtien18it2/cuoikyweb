@@ -42,15 +42,7 @@
                                 </td>
                                 <td colspan="3">
                                         <span>
-                                            @if ($data->loaiP =='binhdan')
-                                                {!! 'Bình dân' !!}
-                                            @elseif($data->loaiP =='thuonggia')
-                                                {!! 'Thương gia' !!}
-                                            @elseif($data->loaiP =='Vip')
-                                                {!! 'Vip' !!}
-                                            @elseif($data->loaiP =='Royal')
-                                                {!! 'Royal' !!}
-                                            @endif
+                                            {{$data->loaiP}}
                                         </span>
                                     </td>
                                     <td colspan="3">

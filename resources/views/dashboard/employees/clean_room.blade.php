@@ -35,10 +35,12 @@
             </div>
             <div class="col-md-1" id="col_data">
                 <p>
-                    @if ($room->loaiP =='binhdan')
-                    {!! 'Bình dân' !!}
-                @elseif($room->loaiP =='thuonggia')
-                    {!! 'Thương gia' !!}
+                    @if ($room->loaiP =='Popularly')
+                    {!! 'Popularly' !!}
+                @elseif($room->loaiP =='
+Trader')
+                    {!! '
+Trader' !!}
                 @elseif($room->loaiP =='Vip')
                     {!! 'Vip' !!}
                 @elseif($room->loaiP =='Royal')

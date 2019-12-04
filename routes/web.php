@@ -10,17 +10,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('test',function(){
+// Route::get('test',function(){
     // $data = App\phong::find('3')->dichvu()->get()->toArray();
     // echo '<pre>';
     // print_r($data);
     // echo '</pre>';
     // return view('dashboard.employees.empty_room');
-});
-
+// });
+// Route::get('test',function(){
+//     return view('dashboard.employees.check_book_room');
+// });
 //Trang quản lý của Employee
 Route::prefix("/employee")->middleware(['employee','auth'])->group(function(){
     Route::resource('employee','RoomController');
+    //Đổi mật khẩu
+
+    Route::get('kiemtra','RoomController@kiemtra')->name('employee.check');
+
+    //Đặt phòng trước
+    Route::get('datphong','RoomController@getdatphongtruoc')->name('employee.bookroom.store.get');
+    Route::post('datphong','RoomController@postdatphongtruoc')->name('employee.bookroom.store');
 
     // Route::get('/dichvu','RoomController@dichvu')->name('edit.dichvu.store');
     Route::get('/themdichvu/{id}','RoomController@themdichvu')->name('edit.dichvu.store');
@@ -36,19 +45,26 @@ Route::prefix("/employee")->middleware(['employee','auth'])->group(function(){
 // Trang quản lý phòng
     Route::get('/quanly','RoomController@quanly')->name('employee.quanly');
 
-// Trang đặt phòng
+    //Book Room
+    Route::get('/bookroom/{id}', 'RoomController@book_room')->name('book_room');
+
+    // Trang đặt phòng
 
     Route::get('/datphong/{id}','RoomController@datphong')->name('employee.datphong');
     // Route::get('/themdatphong','RoomController@themdatphong')->name('employee.themdatphong');
 
 // Trang tính tiền
-    Route::get('/tinhtien','RoomController@tinhtien')->name('employee.tinhtien');
+    Route::get('/tinhtien/{id}','RoomController@tinhtien')->name('employee.tinhtien');
+    // Route::get('/tinhtien','RoomController@tinhtien')->name('employee.tinhtien');
     Route::get('/thanhtoan/{id}','RoomController@thanhtoan')->name('employee.thanhtoan');
 });
 Route::get('/', function () {
     return view('member.dangnhap');
 });
-
+Route::get('matkhau', 'RoomController@matkhau')->name('employee.matkhau')->middleware('auth');
+//profile
+Route::get('thongtin/{id}', 'RoomController@thongtin')->name('employee.thongtin')->middleware('auth');
+    //Check lịch đặt phòng
 //Đăng ký
 Route::get('dangky',['as'=>'getdangky','uses'=>'DangKyController@dangky']);
 Route::post('postdangky',['as'=>'postdangky','uses'=>'DangKyController@postdangky']);
@@ -61,15 +77,12 @@ Route::post('postdangnhap',['as'=>'postdangnhap','uses'=>'DangNhapController@pos
 //Đăng xuất
 Route::get('getlogout',['as'=>'getlogout','uses'=>'NhanVienController@logout']);
 
-//Trang quản lý
-// Route::get('manager',function (){
-//     return view('dashboard.manager.manager');
-// });
 
 
 //Trang quản lý Manager
 Route::prefix("/manager")->middleware(['admin','auth'])->group(function(){
     Route::resource('manager','NhanVienController');
+    Route::get('doanhthu','NhanVienController@doanhthu')->name('manager.doanhthu');
 });
 
 

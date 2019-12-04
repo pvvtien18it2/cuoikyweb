@@ -35,10 +35,12 @@
             </div>
             <div class="col-md-1" id="col_data">
                 <p>
-                    @if ($room->loaiP =='binhdan')
-                    {!! 'Bình dân' !!}
-                @elseif($room->loaiP =='thuonggia')
-                    {!! 'Thương gia' !!}
+                    @if ($room->loaiP =='Popularly')
+                    {!! 'Popularly' !!}
+                @elseif($room->loaiP =='
+Trader')
+                    {!! '
+Trader' !!}
                 @elseif($room->loaiP =='Vip')
                     {!! 'Vip' !!}
                 @elseif($room->loaiP =='Royal')
@@ -63,41 +65,9 @@
                     <form action="{{route('employee.thanhtoan',$room->id)}}" method="head">
                             @csrf
                             <input type="hidden"  name="tongDichVu" value="{!!$tongdichvu!!}">
-                            {{--  <input type="hidden"  name="idP" value="{!!$room->id!!}">  --}}
                             <button type="submit" class="btn btn-primary">Tính tiền</button>
+                            
                     </form>
-                    {{--  <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Tính tiền</button>
-
-                    <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Tidnh tiền</h5>
-                            </div>
-                            <form action="{{route('employee.thanhtoan',$room->id)}}" method="head">
-                                @csrf
-                                <div class="modal-body">
-                                    <input type="hidden"  name="idP" value="{!!$room->id!!}">
-                                    <input type="hidden"  name="tongDichVu" value="{!!$tongdichvu!!}">
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Bạn có chắc chắn muốn tính tiền {{$room->tenP}}</strong><br>
-                                        <b>Với số tiền dịch vụ là: {{number_format($tongdichvu)}}đ</b>
-                                    </div>
-
-                                        <script>
-                                        $(".alert").alert();
-                                        </script>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Hoàn thành</button>
-                                </div>
-                            </form>
-                            </div>
-                        </div>
-                        </div>  --}}
             </div>
         </div>
     @endforeach

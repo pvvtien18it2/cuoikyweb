@@ -16,7 +16,7 @@ class CreateDichvuTable extends Migration
         //'nuoisuoi','coca','pepsi','bohuc',biasaigon','biaheineken','biacorona','craven','nuoisuoi','baso','anuong','combo1','combo2','combo3','combo4'
         Schema::create('dichvu', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('phong_id')->references('id')->on('phong');
+            $table->unsignedBigInteger('phong_id')->references('id')->on('phong')->onDelete('cascade');
             $table->integer('nuocsuoi')->default(0);
             $table->integer('coca')->default(0);
             $table->integer('pepsi')->default(0);

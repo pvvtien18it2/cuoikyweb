@@ -17,10 +17,10 @@ class DangNhapController extends Controller
 //            return view('dashboard.manager.manager');
             $user = Auth::user();
             if ($user->admin == 1){
-                return redirect('manager/manager');
+                return redirect()->route('manager.index');
             }
             else{
-                return redirect('employee/employee');
+                return redirect()->route('employee.index');
             }
         }
         else{

@@ -15,7 +15,11 @@ class CreateQuanlyphongsTable extends Migration
     {
         Schema::create('quanlyphongs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('phong_id')->references('id')->on('phong');
+            $table->unsignedBigInteger('phong_id')->references('id')->on('phong')->onDelete('cascade');
+            $table->integer('number_cmnd');
+            $table->string('name');
+            $table->integer('people');
+            $table->string('day_create' , 4000);
             $table->timestamps();
         });
     }
