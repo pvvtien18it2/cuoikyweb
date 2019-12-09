@@ -18,7 +18,7 @@
     // return view('dashboard.employees.empty_room');
 // });
 // Route::get('test',function(){
-//     return view('dashboard.employees.check_book_room');
+//     return view('dashboard.employees.select_room');
 // });
 //Trang quản lý của Employee
 Route::prefix("/employee")->middleware(['employee','auth'])->group(function(){
@@ -27,6 +27,10 @@ Route::prefix("/employee")->middleware(['employee','auth'])->group(function(){
 
     Route::get('kiemtra','RoomController@kiemtra')->name('employee.check');
 
+    //Chọn phòng
+    Route::get('chonphong','RoomController@chonphong')->name('employee.chonphong');
+    //Update chọn phòng
+    Route::get('updatechonphong','RoomController@updatechonphong')->name('employee.updatechonphong');
     //Đặt phòng trước
     Route::get('datphong','RoomController@getdatphongtruoc')->name('employee.bookroom.store.get');
     Route::post('datphong','RoomController@postdatphongtruoc')->name('employee.bookroom.store');

@@ -92,3 +92,4 @@
     <script src="{{ asset('resources/js/jquery.min.js') }}"></script> --}}
     @yield('js')
 </body>
+</html>

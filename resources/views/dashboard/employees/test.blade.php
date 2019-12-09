@@ -102,6 +102,12 @@
                         <input type="hidden" name="tienphong" value="{{$tienphong}}">
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="Tổng cộng" class="col-md-5 col-form-label">Tổng cộng</label>
+                    <div class="col-md-7">
+                        <span class="form-control ">{{number_format($tienphong + $tongdichvu)}}</span>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-left: 60%">
                         <button type="submit" class="btn btn-primary" style="margin: auto">Xác nhận thanh toán</button>

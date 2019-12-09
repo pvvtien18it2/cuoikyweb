@@ -17,4 +17,8 @@ class phong extends Model
     {
         return $this->hasMany('App\quanlyphong');
     }
+    public function datphong()
+    {
+        return $this->hasMany('App\datphong');
+    }
 }

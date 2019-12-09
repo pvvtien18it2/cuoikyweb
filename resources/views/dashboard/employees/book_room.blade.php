@@ -23,8 +23,6 @@
                     </div>
                 </div>
                 <div class="form-group row">
-
-
                     <label for="Tên khách hàng" class="col-md-5 col-form-label">Tên khách hàng</label>
                     <div class="col-md-7">
                         {!! $errors->first('txtName') !!}
@@ -39,13 +37,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
-
                     <label for="Số người" class="col-md-5 col-form-label">Số người</label>
                     <div class="col-md-7">
                         {!! $errors->first('txtNumber') !!}
                         <input class="form-control " type="text" name="txtNumber" placeholder="Nhập số người tại đây">
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-left: 70%">
                         <button type="submit" class="btn btn-primary" style="margin: auto">Hoàn tất</button>

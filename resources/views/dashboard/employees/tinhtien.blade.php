@@ -29,24 +29,10 @@
     @foreach ($rooms as $room)
         <div class="row table " >
             <div class="col-md-1" id="col_data">
-                <p>
                     {!! $room->tenP !!}
-                </p>
             </div>
             <div class="col-md-1" id="col_data">
-                <p>
-                    @if ($room->loaiP =='Popularly')
-                    {!! 'Popularly' !!}
-                @elseif($room->loaiP =='
-Trader')
-                    {!! '
-Trader' !!}
-                @elseif($room->loaiP =='Vip')
-                    {!! 'Vip' !!}
-                @elseif($room->loaiP =='Royal')
-                    {!! 'Royal' !!}
-                @endif
-                </p>
+                {{$room->loaiP}}
             </div>
 
             <div class="col-md-2" id="col_data_button">
@@ -66,7 +52,6 @@ Trader' !!}
                             @csrf
                             <input type="hidden"  name="tongDichVu" value="{!!$tongdichvu!!}">
                             <button type="submit" class="btn btn-primary">Tính tiền</button>
-                            
                     </form>
             </div>
         </div>

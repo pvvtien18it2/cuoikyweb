@@ -43,7 +43,7 @@
                                     <i class="fas fa-times">  {{$r1->tenP}} ({{$r1->loaiP}})</i>
                                 </button>
                                 @elseif ($r1->tinhtrang == 0)
-                                <button style="color: yellow" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button style="color: yellow" type="button" class="btn btn-warning  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user-edit">  {{$r1->tenP}} ({{$r1->loaiP}})</i>
                                 </button>
                                 @elseif($r1->tinhtrang ==1 && $r1->trong == 1)
@@ -94,8 +94,8 @@
                                         </div>
                                     @else
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Dịch vụ</button>
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Tính tiền</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Dịch vụ</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Tính tiền</button>
                                         </div>
                                     @endif
                                 </div>
@@ -113,7 +113,7 @@
                                     <i class="fas fa-times">  {{$r2->tenP}} ({{$r2->loaiP}})</i>
                                 </button>
                                 @elseif ($r2->tinhtrang == 0)
-                                <button style="color: yellow" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button style="color: yellow" type="button" class="btn btn-warning  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user-edit">  {{$r2->tenP}} ({{$r2->loaiP}})</i>
                                 </button>
                                 @elseif($r2->tinhtrang ==1 && $r2->trong == 1)
@@ -159,14 +159,14 @@
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r2->trong == 0 && $r2->tinhtrang == 0)
-                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                        <div class="btn-group" role="group" aria-label="Basic example" style="margin: auto">
                                             <a href="{!! route('edit.dichvu.store',$r2->id) !!}"class="btn btn-success">Dịch vụ</a>
                                             <a href="{!! route('employee.tinhtien',$r2->id) !!}" class="btn btn-success">Tính tièn</a>
                                         </div>
                                     @else
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Dịch vụ</button>
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Tính tiền</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Dịch vụ</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Tính tiền</button>
                                         </div>
                                     @endif
                                     </div>
@@ -184,7 +184,7 @@
                                     <i class="fas fa-times">  {{$r3->tenP}} ({{$r3->loaiP}})</i>
                                 </button>
                                 @elseif ($r3->tinhtrang == 0)
-                                <button style="color: yellow" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button style="color: yellow" type="button" class="btn btn-warning  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user-edit">  {{$r3->tenP}} ({{$r3->loaiP}})</i>
                                 </button>
                                 @elseif($r3->tinhtrang ==1 && $r3->trong == 1)
@@ -230,14 +230,14 @@
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r3->trong == 0 && $r3->tinhtrang == 0)
-                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                        <div class="btn-group" role="group" aria-label="Basic example" style="margin: auto">
                                             <a href="{!! route('edit.dichvu.store',$r3->id) !!}"class="btn btn-success">Dịch vụ</a>
                                             <a href="{!! route('employee.tinhtien',$r3->id) !!}" class="btn btn-success">Tính tièn</a>
                                         </div>
                                     @else
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Dịch vụ</button>
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Tính tiền</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Dịch vụ</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Tính tiền</button>
                                         </div>
                                     @endif
                                     </div>
@@ -255,7 +255,7 @@
                                     <i class="fas fa-times">  {{$r4->tenP}} ({{$r4->loaiP}})</i>
                                 </button>
                                 @elseif ($r4->tinhtrang == 0)
-                                <button style="color: yellow" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button style="color: yellow" type="button" class="btn btn-warning  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user-edit">  {{$r4->tenP}} ({{$r4->loaiP}})</i>
                                 </button>
                                 @elseif($r4->tinhtrang ==1 && $r4->trong == 1)
@@ -301,14 +301,14 @@
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r4->trong == 0 && $r4->tinhtrang == 0)
-                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                        <div class="btn-group" role="group" aria-label="Basic example" style="margin: auto">
                                             <a href="{!! route('edit.dichvu.store',$r4->id) !!}"class="btn btn-success">Dịch vụ</a>
                                             <a href="{!! route('employee.tinhtien',$r4->id) !!}" class="btn btn-success">Tính tièn</a>
                                         </div>
                                     @else
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Dịch vụ</button>
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Tính tiền</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Dịch vụ</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Tính tiền</button>
                                         </div>
                                     @endif
                                     </div>
@@ -327,7 +327,7 @@
                                     <i class="fas fa-times">  {{$r5->tenP}} ({{$r5->loaiP}})</i>
                                 </button>
                                 @elseif ($r5->tinhtrang == 0)
-                                <button style="color: yellow" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button style="color: yellow" type="button" class="btn btn-warning  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user-edit">  {{$r5->tenP}} ({{$r5->loaiP}})</i>
                                 </button>
                                 @elseif($r5->tinhtrang ==1 && $r5->trong == 1)
@@ -373,14 +373,14 @@
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r5->trong == 0 && $r5->tinhtrang == 0)
-                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                        <div class="btn-group" role="group" aria-label="Basic example" style="margin: auto">
                                             <a href="{!! route('edit.dichvu.store',$r5->id) !!}"class="btn btn-success">Dịch vụ</a>
                                             <a href="{!! route('employee.tinhtien',$r5->id) !!}" class="btn btn-success">Tính tièn</a>
                                         </div>
                                     @else
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Dịch vụ</button>
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Tính tiền</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Dịch vụ</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Tính tiền</button>
                                         </div>
                                     @endif
                                     </div>
@@ -398,7 +398,7 @@
                                     <i class="fas fa-times">  {{$r6->tenP}} ({{$r6->loaiP}})</i>
                                 </button>
                                 @elseif ($r6->tinhtrang == 0)
-                                <button style="color: yellow" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button style="color: yellow" type="button" class="btn btn-warning  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user-edit">  {{$r6->tenP}} ({{$r6->loaiP}})</i>
                                 </button>
                                 @elseif($r6->tinhtrang ==1 && $r6->trong == 1)
@@ -444,14 +444,14 @@
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r6->trong == 0 && $r6->tinhtrang == 0)
-                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                        <div class="btn-group" role="group" aria-label="Basic example" style="margin: auto">
                                             <a href="{!! route('edit.dichvu.store',$r6->id) !!}"class="btn btn-success">Dịch vụ</a>
                                             <a href="{!! route('employee.tinhtien',$r6->id) !!}" class="btn btn-success">Tính tièn</a>
                                         </div>
                                     @else
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Dịch vụ</button>
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Tính tiền</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Dịch vụ</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Tính tiền</button>
                                         </div>
                                     @endif
                                     </div>
@@ -470,7 +470,7 @@
                                     <i class="fas fa-times">  {{$r7->tenP}} ({{$r7->loaiP}})</i>
                                 </button>
                                 @elseif ($r1->tinhtrang == 0)
-                                <button style="color: yellow" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button style="color: yellow" type="button" class="btn btn-warning  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user-edit">  {{$r7->tenP}} ({{$r7->loaiP}})</i>
                                 </button>
                                 @elseif($r7->tinhtrang ==1 && $r7->trong == 1)
@@ -516,14 +516,14 @@
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r7->trong == 0 && $r7->tinhtrang == 0)
-                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                        <div class="btn-group" role="group" aria-label="Basic example" style="margin: auto">
                                             <a href="{!! route('edit.dichvu.store',$r7->id) !!}"class="btn btn-success">Dịch vụ</a>
                                             <a href="{!! route('employee.tinhtien',$r7->id) !!}" class="btn btn-success">Tính tièn</a>
                                         </div>
                                     @else
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Dịch vụ</button>
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Tính tiền</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Dịch vụ</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Tính tiền</button>
                                         </div>
                                     @endif
                                     </div>
@@ -542,7 +542,7 @@
                                     <i class="fas fa-times">  {{$r8->tenP}} ({{$r8->loaiP}})</i>
                                 </button>
                                 @elseif ($r8->tinhtrang == 0)
-                                <button style="color: yellow" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button style="color: yellow" type="button" class="btn btn-warning  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user-edit">  {{$r8->tenP}} ({{$r8->loaiP}})</i>
                                 </button>
                                 @elseif($r8->tinhtrang ==1 && $r8->trong == 1)
@@ -588,14 +588,14 @@
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r8->trong == 0 && $r8->tinhtrang == 0)
-                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                        <div class="btn-group" role="group" aria-label="Basic example" style="margin: auto">
                                             <a href="{!! route('edit.dichvu.store',$r8->id) !!}"class="btn btn-success">Dịch vụ</a>
                                             <a href="{!! route('employee.tinhtien',$r8->id) !!}" class="btn btn-success">Tính tièn</a>
                                         </div>
                                     @else
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Dịch vụ</button>
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Tính tiền</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Dịch vụ</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Tính tiền</button>
                                         </div>
                                     @endif
                                     </div>
@@ -614,7 +614,7 @@
                                     <i class="fas fa-times">  {{$r9->tenP}} ({{$r9->loaiP}})</i>
                                 </button>
                                 @elseif ($r9->tinhtrang == 0)
-                                <button style="color: yellow" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button style="color: yellow" type="button" class="btn btn-warning  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-user-edit">  {{$r9->tenP}} ({{$r9->loaiP}})</i>
                                 </button>
                                 @elseif($r9->tinhtrang ==1 && $r9->trong == 1)
@@ -660,14 +660,14 @@
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r9->trong == 0 && $r9->tinhtrang == 0)
-                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                        <div class="btn-group" role="group" aria-label="Basic example" style="margin: auto">
                                             <a href="{!! route('edit.dichvu.store',$r9->id) !!}"class="btn btn-success">Dịch vụ</a>
                                             <a href="{!! route('employee.tinhtien',$r9->id) !!}" class="btn btn-success">Tính tièn</a>
                                         </div>
                                     @else
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Dịch vụ</button>
-                                            <button class="btn btn-info" id="btn-action" style="width: 100px">Tính tiền</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Dịch vụ</button>
+                                            <button class="btn btn-warning " id="btn-action" style="width: 100px">Tính tiền</button>
                                         </div>
                                     @endif
                                     </div>

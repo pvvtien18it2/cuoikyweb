@@ -47,13 +47,9 @@
                 @foreach($offsets as $offset)
                     @foreach ($check as $c)
                     @php
-
-
-
                     $timeOld = Carbon::parse($timeOld);
                     $days =  $timeOld->diffInDays($now);
                     $times = $timeOld->diffInHours($now);
-
                     @endphp
                     @if ($times==$offset)
                         @if ($days <= 0)
@@ -82,17 +78,8 @@
                                 <td colspan="2">{{$c->dayBookRoom}}</td>
                             </tr>
                         @endif
-                        @endif
-                            {{--
-                                $now = Carbon::now();
-                                $check = datphong::all();
-                                if($now->isToday($check->dayBookRoom) && $check->dayBookRoom->diffForHumans($now) == '2 hours before' ){
-                                    $delete =  datphong::find($check->id);
-                                    $delete->delete();
-                                } --}}
-
+                    @endif
                     @endforeach
-
                 @endforeach
             </table>
         </div>

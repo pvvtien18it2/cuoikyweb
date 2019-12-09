@@ -151,14 +151,94 @@ class RoomController extends Controller
         return view('dashboard.employees.datphong');
     }
     public function postdatphongtruoc(Request $request){
-        $datphong = new datphong();
-        $datphong->name = $request->txtName;
-        $datphong->number_cmnd = $request->txtCMND;
-        $datphong->phone = $request->txtCallNumber;
-        $datphong->people = $request->txtNumber;
-        $datphong->dayBookRoom = $request->txtBookRoom;
-        $datphong->save();
-        return redirect()->route('employee.index')->with('note', 'Đã hoàn thành việc cho Đặt phòng vào ngày: ' . $request->txtBookRoom);
+        // $check = datphong::all();
+        // if($check != null){
+        //     $dayStart = $check->dayBookRoom->day();
+        //     $monthStart = $check->dayBookRoom->month();
+        //     $dayOut = $check->dayOutRoom->day();
+        //     $monthOut = $check->dayOutRoom->month();
+        //     if( $request->txtBookRoom->month() == $monthStart && $request->txtOutRoom->month() == $monthOut){
+        //         if($request->txtBookRoom->day() < $dayStart && $request->txtOutRoom->day() > $dayOut){
+        //             $datphong = new datphong();
+        //             $datphong->name = $request->txtName;
+        //             $datphong->number_cmnd = $request->txtCMND;
+        //             $datphong->phone = $request->txtCallNumber;
+        //             $datphong->people = $request->txtNumber;
+        //             $datphong->dayBookRoom = $request->txtBookRoom;
+        //             $datphong->dayOutRoom = $request->txtdayOutRoom;
+        //             $datphong->save();
+        //             return redirect()->route('employee.index')->with('note', 'Đã hoàn thành việc cho Đặt phòng vào ngày: ' . $request->txtBookRoom);
+        //         }
+        //         else
+        //     }
+        // }else{
+        //     $datphong = new datphong();
+        //     $datphong->name = $request->txtName;
+        //     $datphong->number_cmnd = $request->txtCMND;
+        //     $datphong->phone = $request->txtCallNumber;
+        //     $datphong->people = $request->txtNumber;
+        //     $datphong->dayBookRoom = $request->txtBookRoom;
+        //     $datphong->dayOutRoom = $request->txtdayOutRoom;
+        //     $datphong->save();
+        //     return redirect()->route('employee.index')->with('note', 'Đã hoàn thành việc cho Đặt phòng vào ngày: ' . $request->txtBookRoom);
+        // }
+        // $book_id = datphong::all()->last();
+        //     $nextID = 0 ;
+        //     if(isset($bood_id)){
+        //         $nextID = $book_id->id + 1;
+        //     }else{
+        //         $nextID = 1;
+        //     }
+        $dayBookRoom = Carbon::parse($request->txtBookRoom);
+        $dayOutRoom = Carbon::parse($request->txtOutRoom);
+        // Month
+        $monthBook = $dayBookRoom->month;
+        $monthOut = $dayOutRoom->month;
+        // Day
+        $dayBook = $dayBookRoom->day;
+        $dayOut = $dayOutRoom->day;
+        // Check day
+        $checkDay = $dayBookRoom->diffInDays($dayOutRoom);
+        // Hour
+        $hourBook = $dayBookRoom->hour;
+        $hourOut = $dayOutRoom->hour;
+        if($dayBookRoom->isPast() || $dayOutRoom->isPast()){
+            return redirect()->route('employee.bookroom.store.get')->with('noteBookRoom', 'Ngày đến hoặc đi đã qua');
+        }elseif($monthBook == $monthOut && $dayBook > $dayOut || $monthBook == $monthOut && $dayBook ==  $dayOut && $hourBook > $hourOut || $monthBook < $monthOut || $monthBook > $monthOut && $checkDay <= 0){
+            return redirect()->route('employee.bookroom.store.get')->with('note', 'Ngày đi không hợp lệ so với ngày đến');
+        }elseif($request->txtNumber > 4 ){
+            return redirect()->route('employee.bookroom.store.get')->with('notepeople', 'Xin lỗi giới hạn người ở là 4');
+        }
+        else{
+            //datphong
+            $datphong = new datphong();
+            $datphong->name = $request->txtName;
+            $datphong->number_cmnd = $request->txtCMND;
+            $datphong->phone = $request->txtCallNumber;
+            $datphong->people = $request->txtNumber;
+            $datphong->dayBookRoom = $request->txtBookRoom;
+            $datphong->dayOutRoom = $request->txtOutRoom;
+            $datphong->token = $request->_token;
+            $datphong->day_create = Carbon::now();
+            $datphong->save();
+            //phong
+
+            return redirect()->route('employee.chonphong');
+        }
+
+        // return redirect()->route('employee.index')->with('note', 'Đã hoàn thành việc cho Đặt phòng vào ngày: ' . $request->txtBookRoom);
+    }
+    //-----------------------------------------Chon phong------------------------------
+    public function chonphong(){
+        $idNow = datphong::all()->last();
+        return view('dashboard.employees.select_room',compact('idNow'));
+    }
+    //-----------------------------------update chọn phòng--------------------------------
+    public function updatechonphong(Request $request){
+        $room = datphong::find($request->txtnextID);
+        $room->phong_id = $request->txtphong_id;
+        $room->save();
+        return redirect()->route('employee.index');
     }
     // -----------------------------------------------Dat phong---------------------------------
     public function datphong(ThuePhongRequest $request , $id)
@@ -174,6 +254,11 @@ class RoomController extends Controller
         $room->tinhtrang = 0;
         $room->trong = 0;
         $room->save();
+        $book = datphong::where('token',$request->token)->first();
+        if($book != null){
+            $book->delete();
+        }
+
         return redirect()->route('employee.index')->with('mess','Đã hoàn thành việc cho thuê phòng: '.$room->tenP);
     }
 
