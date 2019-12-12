@@ -30,6 +30,12 @@
                 {{ session('notepeople') }}
             </div>
         @endif
+        @if (session('mess'))
+            <div class="alert alert-danger alert-dismissible fade show" style="margin: auto ; text-align: center">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ session('mess') }}
+            </div>
+        @endif
         <div class="row">
             <form action="{{route('employee.bookroom.store')}}" method="post" class="form-control-lg " style="margin: auto; width: 800px; margin-top: 45px">
                 @csrf

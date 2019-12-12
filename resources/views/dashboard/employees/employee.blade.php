@@ -77,14 +77,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r1->ghichu != null)
+                                    {{--  @if ($r1->ghichu != null)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
                                     <span class="form-control">
                                             {{$r1->ghichu}}
                                         </span>
                                     </div>
-                                    @endif
+                                    @endif  --}}
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r1->trong == 0 && $r1->tinhtrang == 0)
@@ -148,14 +148,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r2->ghichu != null)
+                                    {{--  @if ($r2->ghichu != null)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
                                     <span class="form-control">
                                             {{$r2->ghichu}}
                                         </span>
                                     </div>
-                                    @endif
+                                    @endif  --}}
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r2->trong == 0 && $r2->tinhtrang == 0)
@@ -219,14 +219,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r3->ghichu != null)
+                                    {{--  @if ($r3->ghichu != null)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
                                     <span class="form-control">
                                             {{$r3->ghichu}}
                                         </span>
                                     </div>
-                                    @endif
+                                    @endif  --}}
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r3->trong == 0 && $r3->tinhtrang == 0)
@@ -290,14 +290,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r4->ghichu != null)
+                                    {{--  @if ($r4->ghichu != null)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
                                     <span class="form-control">
                                             {{$r4->ghichu}}
                                         </span>
                                     </div>
-                                    @endif
+                                    @endif  --}}
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r4->trong == 0 && $r4->tinhtrang == 0)
@@ -362,14 +362,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r5->ghichu != null)
+                                    {{--  @if ($r5->ghichu != null)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
                                     <span class="form-control">
                                             {{$r5->ghichu}}
                                         </span>
                                     </div>
-                                    @endif
+                                    @endif  --}}
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r5->trong == 0 && $r5->tinhtrang == 0)
@@ -433,14 +433,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r6->ghichu != null)
+                                    {{--  @if ($r6->ghichu != null)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
                                     <span class="form-control">
                                             {{$r6->ghichu}}
                                         </span>
                                     </div>
-                                    @endif
+                                    @endif  --}}
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r6->trong == 0 && $r6->tinhtrang == 0)
@@ -505,14 +505,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r7->ghichu != null)
+                                    {{--  @if ($r7->ghichu != null)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
                                     <span class="form-control">
                                             {{$r7->ghichu}}
                                         </span>
                                     </div>
-                                    @endif
+                                    @endif  --}}
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r7->trong == 0 && $r7->tinhtrang == 0)
@@ -577,14 +577,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r8->ghichu != null)
+                                    {{--  @if ($r8->ghichu != null)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
                                     <span class="form-control">
                                             {{$r8->ghichu}}
                                         </span>
                                     </div>
-                                    @endif
+                                    @endif  --}}
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r8->trong == 0 && $r8->tinhtrang == 0)
@@ -649,14 +649,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r9->ghichu != null)
+                                    {{--  @if ($r9->ghichu != null)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
                                     <span class="form-control">
                                             {{$r9->ghichu}}
                                         </span>
                                     </div>
-                                    @endif
+                                    @endif  --}}
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r9->trong == 0 && $r9->tinhtrang == 0)

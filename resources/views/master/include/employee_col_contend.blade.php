@@ -28,12 +28,17 @@
         <a href="{!!route('employee.quanly')!!}">
             <button type="button" class="list-group-item list-group-item-action">
                 Dịch vụ và thanh toán
-                </button>
+            </button>
         </a>
         <a href="{!!route('employee.check')!!}">
             <button type="button" class="list-group-item list-group-item-action">
                 Đặt phòng trước
                 <span class="badge badge-primary badge-pill">{{$count}}</span>
-                </button>
+            </button>
+        </a>
+        <a href="{!!route('employee.ghichu')!!}">
+            <button type="button" class="list-group-item list-group-item-action">
+                Dịch vụ và thanh toán
+            </button>
         </a>
     </div>

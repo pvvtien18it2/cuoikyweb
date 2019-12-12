@@ -19,7 +19,6 @@ class CreatePhongTable extends Migration
             $table->string('tenP')->unique();
             $table->string('loaiP');
             $table->integer('songuoi');
-            $table->string('ghichu')->nullable();
             $table->integer('hour');
             $table->integer('day');
             $table->string('tinhtrang');

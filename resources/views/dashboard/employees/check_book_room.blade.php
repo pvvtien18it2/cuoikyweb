@@ -15,9 +15,11 @@
     @endphp
     <div class="container">
         <div class="row">
+            <h2 style="text-align: center ; font-size: 70px ; padding: 20px; margin: auto">Danh sách đặt phòng trước</h2>
             <table class="table table-bordered table-hover">
                 <thead>
                     <td colspan="1">STT</td>
+                    <td colspan="1">Phòng</td>
                     <td colspan="3">Tên khách hàng</td>
                     <td colspan="2">Số CMND</td>
                     <td colspan="2">Số điện thoại</td>
@@ -27,8 +29,10 @@
                 @php
 
                 $stt = 1;
-                $offsets = Array();
-                $count = 0;
+                $offsets = array();
+                $arr_phong_id = array();
+                $arr_id = array();
+                $arr = array();
                 @endphp
                 @foreach ($check as $c)
                     @php
@@ -38,39 +42,85 @@
                     $times = $timeOld->diffInHours($now);
                     array_push($offsets, $times);
                     asort($offsets);
-                    if ($days <= 2){
-                        $count++;
-                    }
                     @endphp
 
                 @endforeach
                 @foreach($offsets as $offset)
                     @foreach ($check as $c)
                     @php
+                    $timeOld = $c->dayBookRoom;
                     $timeOld = Carbon::parse($timeOld);
                     $days =  $timeOld->diffInDays($now);
                     $times = $timeOld->diffInHours($now);
                     @endphp
-                    @if ($times==$offset)
-                        @if ($days <= 0)
+                        @if ($times == $offset)
+                            @php
+                                array_push($arr_phong_id, $c->phong_id);
+                                array_push($arr_id, $c->id);
+                                $arr = array_combine($arr_id, $arr_phong_id);
+                            @endphp
+                        @else
+                            @php
+                                $arr_phong_id;
+                                $arr_id;
+                                $arr;
+                            @endphp
+                        @endif
+                        @endforeach
+                    @endforeach
+                    @php
+
+                //echo '<pre>';
+                //print_r($arr);
+                //echo '</pre>';
+            @endphp
+                    @foreach ($check as $c)
+                            @php
+                                $timeOld = $c->dayBookRoom;
+                                $timeOld = Carbon::parse($timeOld);
+                                $days =  $timeOld->diffInDays($now);
+                                $times = $timeOld->diffInHours($now);
+                            @endphp
+                        @if ($days < 0)
                             @if($now->isToday($timeOld) && $timeOld->isPast())
                                 @php
                                     $delete =  datphong::find($c->id);
                                     $delete->delete();
                                 @endphp
-                            @else
+                            @endif
+                        @endif
+                    @endforeach
+                @foreach($offsets as $offset)
+                    @foreach ($check as $c)
+                        @php
+                            $timeOld = $c->dayBookRoom;
+                            $timeOld = Carbon::parse($timeOld);
+                            $days =  $timeOld->diffInDays($now);
+                            $times = $timeOld->diffInHours($now);
+                        @endphp
+                        @if( $offset == $times)
+                        @if(in_array($c->phong_id , $arr) && in_array($times , $offsets) && $days < 1 )
+                            @php
+                                $id = array_search($c->phong_id , $arr);
+                                $room = App\phong::find($c->phong_id)->datphong()->where('id',$id)->first();
+                                $number_room = App\Phong::find($c->phong_id);
+                            @endphp
                             <tr>
                                 <td style="background-color: crimson" colspan="1">{{$stt++}}</td>
-                                <td style="background-color: crimson" colspan="3">{{$c->name}}</td>
-                                <td style="background-color: crimson" colspan="2">{{$c->number_cmnd}}</td>
-                                <td style="background-color: crimson" colspan="2">{{$c->phone}}</td>
-                                <td style="background-color: crimson" colspan="2">{{$c->people}}</td>
-                                <td style="background-color: crimson" colspan="2">{{$c->dayBookRoom}}</td>
+                                <td style="background-color: crimson" colspan="1">{{$number_room->tenP}}</td>
+                                <td style="background-color: crimson" colspan="3">{{$room->name}}</td>
+                                <td style="background-color: crimson" colspan="2">{{$room->number_cmnd}}</td>
+                                <td style="background-color: crimson" colspan="2">{{$room->phone}}</td>
+                                <td style="background-color: crimson" colspan="2">{{$room->people}}</td>
+                                <td style="background-color: crimson" colspan="2">{{$room->dayBookRoom}}</td>
                             </tr>
-                            @endif
                         @else
                             <tr>
+                                @php
+                                    $number_room = App\Phong::find($c->phong_id);
+                                @endphp
                                 <td colspan="1">{{$stt++}}</td>
+                                <td colspan="1">{{$number_room->tenP}}</td>
                                 <td colspan="3">{{$c->name}}</td>
                                 <td colspan="2">{{$c->number_cmnd}}</td>
                                 <td colspan="2">{{$c->phone}}</td>
@@ -78,10 +128,11 @@
                                 <td colspan="2">{{$c->dayBookRoom}}</td>
                             </tr>
                         @endif
-                    @endif
+                        @endif
                     @endforeach
                 @endforeach
             </table>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-5 offset-md-5">

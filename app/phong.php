@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class phong extends Model
 {
     protected $table = 'phong';
-    protected $fillable = ['maP', 'tenP', 'loaiP', 'hour', 'day', 'tinhtrang', 'maDV', 'maNV', 'trong'];
+    protected $fillable = ['maP', 'tenP', 'loaiP', 'hour', 'day', 'tinhtrang', 'maDV', 'maNV', 'trong','id'];
 
     public function dichvu()
     {
@@ -20,5 +20,9 @@ class phong extends Model
     public function datphong()
     {
         return $this->hasMany('App\datphong');
+    }
+    public function ghichu()
+    {
+        return $this->hasMany('App\ghichu');
     }
 }
