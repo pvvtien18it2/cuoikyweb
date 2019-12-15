@@ -11,6 +11,12 @@
             {{ session('note') }}
         </div>
     @endif
+    @if (session('tinhtrang'))
+        <div class="alert alert-success alert-dismissible fade show" style="margin: auto ; text-align: center">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ session('tinhtrang') }}
+        </div>
+    @endif
     @php
         use Carbon\Carbon;
         $now = Carbon::now();
@@ -60,7 +66,6 @@
                         </div>
                     </form>
                 </div>
-
                 </div>
             </div>
             </div>
@@ -70,7 +75,6 @@
                     <td colspan="1">Phòng</td>
                     <td colspan="6">Ghi chú</td>
                     <td colspan="2">Thời gian</td>
-                    <td colspan="1">Chỉnh sửa</td>
                     <td colspan="1">Xóa</td>
                 </thead>
 
@@ -84,8 +88,7 @@
                             <td colspan="1">{{$room->tenP}}</td>
                             <td colspan="6"><textarea readonly='false' class="form-control" rows="3">{{$note->note}}</textarea></td>
                             <td colspan="2">{{$note->day_create}}</td>
-                            <td colspan="1">Chỉnh sửa</td>
-                            <td colspan="1">Xóa</td>
+                            <td colspan="1"><a href="{{route('employee.xoaghichu',$note->id)}}"><button class="btn btn-danger" style="margin: auto">Đã xử lý</button></a></td>
                         </tr>
                     @endforeach
                 @endif

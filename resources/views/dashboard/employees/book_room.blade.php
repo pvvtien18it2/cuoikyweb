@@ -43,7 +43,7 @@
                         <input class="form-control " type="text" name="txtNumber" placeholder="Nhập số người tại đây">
                     </div>
                 </div>
-
+                <input type="hidden" value="{{$book_room->id}}" name="phong_id">
                 <div class="row">
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-left: 70%">
                         <button type="submit" class="btn btn-primary" style="margin: auto">Hoàn tất</button>

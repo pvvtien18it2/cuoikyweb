@@ -11,6 +11,7 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="{!! asset('resources/member/css/style.css') !!}">
+    <link rel="stylesheet" href=" {{ asset('resources/css/bootstrap.min.css') }}">
 </head>
 <body>
 
@@ -58,6 +59,7 @@
                         </div>
                         <div class="form-group form-button">
                             <input type="submit" name="signup" id="signup" class="form-submit" value="Đăng ký"/>
+                            <a href="{{route('manager.index')}}"  class="btn btn-danger" >Trở lại</a>
                         </div>
                     </form>
                 </div>

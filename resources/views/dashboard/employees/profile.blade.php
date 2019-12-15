@@ -41,7 +41,11 @@
                     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Đổi mật khẩu
                     </button>
-                    <a href="{{route('employee.index')}}" style="margin-left: 20px" class="btn btn-danger">Trở lại</a>
+                    @if($user->admin == 0)
+                        <a href="{{route('employee.index')}}" style="margin-left: 20px" class="btn btn-danger">Trở lại</a>
+                    @else
+                        <a href="{{route('manager.index')}}" style="margin-left: 20px" class="btn btn-danger">Trở lại</a>
+                    @endif
                 </div>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">

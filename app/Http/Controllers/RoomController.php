@@ -234,7 +234,8 @@ class RoomController extends Controller
     {
         $tien = phong::find($id);
         // Luu thanh toan vao DB Phong
-        $tien->count = $request->tienphong + $request->dichvu;
+        $tien->countPhong = $request->tienphong;
+        $tien->countDichVu =$request->dichvu;
         $tien->tinhtrang = 0;
         $tien->trong = 1;
         $tien->save();
@@ -307,6 +308,16 @@ class RoomController extends Controller
         $ghichu->save();
 
         return redirect()->route('employee.ghichu')->with('note','Đã thêm thành công một ghi chú');
+    }
+    //thêm ghi chú
+    public function xoaghichu($id)
+    {
+
+        $phong_id = ghichu::find($id);
+        $tenP = phong::find($phong_id->phong_id);
+        $ghichu = ghichu::find($id);
+        $ghichu->delete();
+        return redirect()->route('employee.ghichu')->with('tinhtrang', 'Đã xóa ghi chú phòng '.$tenP->tenP);
     }
     //--------------------------Kiểm tra đặt phòng----------------------------------
     public function kiemtra(){

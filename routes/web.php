@@ -11,7 +11,12 @@
 |
 */
 Route::get('test',function(){
-    $data = App\phong::find('2')->datphong()->where('id',19)->get()->toArray();
+    $data = App\phong::find('3')->ghichu()->get()->toArray();
+    echo count($data);
+    // $data = App\phong::all();
+
+
+    // $data = App\phong::find($r1->id)->ghichu()->get()->toArray();
     echo '<pre>';
     print_r($data);
     echo '</pre>';
@@ -40,6 +45,8 @@ Route::prefix("/employee")->middleware(['employee','auth'])->group(function(){
     Route::get('ghichu','RoomController@ghichu')->name('employee.ghichu');
     //Thêm ghi chú
     Route::get('addghichu','RoomController@addghichu')->name('employee.addghichu');
+    //Thêm tình trạng
+    Route::get('xoaghichu/{id}', 'RoomController@xoaghichu')->name('employee.xoaghichu');
     //Đặt phòng trước
     Route::get('datphong','RoomController@getdatphongtruoc')->name('employee.bookroom.store.get');
     Route::post('datphong','RoomController@postdatphongtruoc')->name('employee.bookroom.store');
@@ -95,9 +102,9 @@ Route::get('getlogout',['as'=>'getlogout','uses'=>'NhanVienController@logout']);
 //Trang quản lý Manager
 Route::prefix("/manager")->middleware(['admin','auth'])->group(function(){
     Route::resource('manager','NhanVienController');
-    Route::get('doanhthu','NhanVienController@doanhthu')->name('manager.doanhthu');
+    Route::get('doanhthuphong','NhanVienController@doanhthuphong')->name('manager.doanhthuphong');
+    Route::get('doanhthudichvu','NhanVienController@doanhthudichvu')->name('manager.doanhthudichvu');
 });
-
 
 
 

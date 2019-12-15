@@ -17,7 +17,8 @@ class CreateGhichusTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('phong_id')->references('id')->on('phong')->onDelete('cascade')->nullable();
             $table->string('name');
-            $table->string('note');
+            $table->string('note',4000);
+            $table->string('tinhtrang',4000)->nullable();
             $table->string('day_create', 4000);
             $table->timestamps();
         });

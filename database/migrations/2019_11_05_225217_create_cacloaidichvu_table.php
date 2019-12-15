@@ -18,7 +18,6 @@ class CreateCacloaidichvuTable extends Migration
             $table->string('tenDV');
             $table->integer('giaDV');
             $table->string('loai');
-            $table->integer('count')->nullable();
         });
     }
 

@@ -96,7 +96,20 @@ class NhanVienController extends Controller
         Auth::logout();
         return redirect('/');
     }
-    public function doanhthu(){
-        return view('dashboard.manager.balance');
+    //Doanh thu phòng
+    public function doanhthuphong(){
+        return view('dashboard.manager.balanceRoom');
+    }
+
+    //Doanh thu dịch vụ
+    public function doanhthudichvu()
+    {
+        return view('dashboard.manager.balanceService');
+    }
+    //------------------------------Profile---------------------------
+    public function thongtin($id)
+    {
+        $user = User::find($id);
+        return view('dashboard.manager.profile', compact('user'));
     }
 }

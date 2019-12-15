@@ -54,51 +54,33 @@
                 $arr = array();
             @endphp
             @if($count > 0 )
+                @foreach ($checks as $c)
+                    @php
+                    $timeOld = $c->dayBookRoom;
+                    $timeOld = Carbon::parse($timeOld);
+                    $days =  $timeOld->diffInDays($now);
+                    $times = $timeOld->diffInHours($now);
+                    array_push($arr_time, $times);
+                    asort($arr_time);
+                    @endphp
+                @endforeach
+                @foreach($arr_time as $a)
                     @foreach ($checks as $c)
-                        @php
-                        $timeOld = $c->dayBookRoom;
-                        $timeOld = Carbon::parse($timeOld);
-                        $days =  $timeOld->diffInDays($now);
-                        $times = $timeOld->diffInHours($now);
-                        array_push($arr_time, $times);
-                        asort($arr_time);
-                        @endphp
+                    @php
+                    $timeOld = $c->dayBookRoom;
+                    $timeOld = Carbon::parse($timeOld);
+                    $days =  $timeOld->diffInDays($now);
+                    $times = $timeOld->diffInHours($now);
+                    @endphp
+                    @if( $times == $a && $days < 1)
+                    @php
+                        array_push($arr_phong_id, $c->phong_id);
+                        array_push($arr_id, $c->id);
+                        $arr = array_combine($arr_id, $arr_phong_id);
+                    @endphp
+                    @endif
                     @endforeach
-                    @foreach($arr_time as $a)
-                        @foreach ($checks as $c)
-                        @php
-                        $timeOld = $c->dayBookRoom;
-                        $timeOld = Carbon::parse($timeOld);
-                        $days =  $timeOld->diffInDays($now);
-                        $times = $timeOld->diffInHours($now);
-
-                        @endphp
-                        {{--  @if(in_array($days,$arr_time) )  --}}
-
-                        @if( $times == $a && $days < 1)
-                        @php
-                                    //echo $time = $a->toDateTimeString();
-                                    //if( $time == $timeOld && $a->diffInDays($timeOld) == 0)
-                                    //$find = App\datphong::where('dayBookRoom',$time)->first();
-                                    //if (in_array($timeOld, $arr_time)){
-                                    //$dayBookRoom = Carbon::parse($c->dayBookRoom);
-                                    //$check = $now->diffInDays($dayBookRoom);
-                                    //if($check == 0){
-                                        array_push($arr_phong_id, $c->phong_id);
-                                        array_push($arr_id, $c->id);
-                                        //$arr_phong_id = array($c->phong_id);
-
-                                        $arr = array_combine($arr_id, $arr_phong_id);
-                                        //}
-                                        //}
-
-                        @endphp
-                        @endif
-
-                        @endforeach
-
-                    @endforeach
-
+                @endforeach
             @else
                 @php
                     $arr_phong_id;
@@ -106,31 +88,26 @@
                     $arr;
                 @endphp
             @endif
-
-            {{--  @foreach ($arr_phong_id as $phong_id)
-                @foreach ($arr_id as $id)
-                        @php
-                            $arr = array($phong_id, $id);
-                        @endphp
-                @endforeach
-            @endforeach  --}}
-
-            @php
-
+            {{-- @php
                 echo '<pre>';
                 print_r($arr);
                 echo '</pre>';
-            @endphp
+            @endphp --}}
         <table class="table table-bordered table-responsive-md table-striped">
             <tr>
                 <td>
                     @if($count >0)
                     @foreach ($rooms1 as $r1)
+                        @php
+                            $data = App\phong::find($r1->id)->ghichu()->get();
+                            $countData = count($data);
+                        @endphp
                         <div class="btn-group">
                                 @if(in_array($r1->id , $arr))
                                     @php
                                         $id = array_search($r1->id , $arr);
                                         $room = App\phong::find($r1->id)->datphong()->where('id',$id)->first();
+                                        @php
                                     @endphp
                                         <button style="color: yellow" type="button" class="btn btn-dark  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-times">  {{$r1->tenP}} ({{$r1->loaiP}})</i>
@@ -162,6 +139,17 @@
                                                         {{$room->phone}}
                                                 </span>
                                                 </div>
+
+                                                @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                                 @php
                                                     $day_create = date('Y-m-d H:i:s',time()) ;
                                                 @endphp
@@ -214,13 +202,18 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r1->ghichu != null)
+                                    @if ($countData > 0)
                                     <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r1->ghichu}}
-                                        </span>
-                                    </div>
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                     @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
@@ -235,6 +228,10 @@
                     @endforeach
                     @else
                         @foreach ($rooms1 as $r1)
+                            @php
+                                $data = App\phong::find($r1->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                             <div class="btn-group">
                             @if ($r1->tinhtrang ==0 && $r1->trong == 0 )
                                 <button style="color: yellow" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -275,12 +272,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r1->ghichu != null)
+                                    @if ($countData > 0)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r1->ghichu}}
-                                        </span>
+                                    <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                        @foreach ($data as $d)
+                                            {{$d->note}}
+                                        @endforeach
+                                    </textarea>
                                     </div>
                                     @endif
                                 </form>
@@ -301,6 +300,10 @@
                 <td>
                     @if($count >0)
                     @foreach ($rooms2 as $r2)
+                        @php
+                            $data = App\phong::find($r2->id)->ghichu()->get();
+                            $countData = count($data);
+                        @endphp
                         <div class="btn-group">
                                 @if(in_array($r2->id , $arr))
                                     @php
@@ -337,6 +340,16 @@
                                                         {{$room->phone}}
                                                 </span>
                                                 </div>
+                                                @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                                 @php
                                                     $day_create = date('Y-m-d H:i:s',time()) ;
                                                 @endphp
@@ -389,14 +402,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r2->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r2->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r2->trong == 1 && $r2->tinhtrang == 1)
@@ -410,6 +425,10 @@
                     @endforeach
                     @else
                         @foreach ($rooms2 as $r2)
+                            @php
+                                $data = App\phong::find($r2->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                             <div class="btn-group">
                             @if ($r2->tinhtrang ==0 && $r2->trong == 0 )
                                 <button style="color: yellow" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -450,14 +469,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r2->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r2->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r2->trong == 1 && $r2->tinhtrang == 1)
@@ -476,6 +497,10 @@
                 <td>
                     @if($count >0)
                     @foreach ($rooms3 as $r3)
+                        @php
+                            $data = App\phong::find($r3->id)->ghichu()->get();
+                            $countData = count($data);
+                        @endphp
                         <div class="btn-group">
                                 @if(in_array($r3->id , $arr))
                                     @php
@@ -512,6 +537,16 @@
                                                         {{$room->phone}}
                                                 </span>
                                                 </div>
+                                                @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                                 @php
                                                     $day_create = date('Y-m-d H:i:s',time()) ;
                                                 @endphp
@@ -564,14 +599,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r3->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r3->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r3->trong == 1 && $r3->tinhtrang == 1)
@@ -586,6 +623,10 @@
                     @else
                         @foreach ($rooms3 as $r3)
                             <div class="btn-group">
+                                @php
+                                    $data = App\phong::find($r3->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                             @if ($r3->tinhtrang ==0 && $r3->trong == 0 )
                                 <button style="color: yellow" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-times">  {{$r3->tenP}} ({{$r3->loaiP}})</i>
@@ -625,14 +666,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r3->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r3->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r3->trong == 1 && $r3->tinhtrang == 1)
@@ -652,6 +695,10 @@
                     @if($count >0)
                     @foreach ($rooms4 as $r4)
                         <div class="btn-group">
+                                @php
+                                    $data = App\phong::find($r4->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                                 @if(in_array($r4->id , $arr))
                                     @php
                                         $id = array_search($r4->id , $arr);
@@ -687,6 +734,16 @@
                                                         {{$room->phone}}
                                                 </span>
                                                 </div>
+                                                @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                                 @php
                                                     $day_create = date('Y-m-d H:i:s',time()) ;
                                                 @endphp
@@ -739,14 +796,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r4->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r4->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r4->trong == 1 && $r4->tinhtrang == 1)
@@ -761,6 +820,10 @@
                     @else
                         @foreach ($rooms4 as $r4)
                             <div class="btn-group">
+                                @php
+                                    $data = App\phong::find($r4->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                             @if ($r4->tinhtrang ==0 && $r4->trong == 0 )
                                 <button style="color: yellow" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-times">  {{$r4->tenP}} ({{$r4->loaiP}})</i>
@@ -800,14 +863,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r4->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r4->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r4->trong == 1 && $r4->tinhtrang == 1)
@@ -827,6 +892,10 @@
                     @if($count >0)
                     @foreach ($rooms5 as $r5)
                         <div class="btn-group">
+                            @php
+                                $data = App\phong::find($r5->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                                 @if(in_array($r5->id , $arr))
                                     @php
                                         $id = array_search($r5->id , $arr);
@@ -862,8 +931,18 @@
                                                         {{$room->phone}}
                                                 </span>
                                                 </div>
+                                                @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                                 @php
-                                                    $day_create = date('Y-m-d H:i:s',time()) ;
+                                                    $day_create = date('Y-m-d H:i:s',time());
                                                 @endphp
                                                 <input type="hidden" name="day_create" value="{{$day_create}}">
                                                 <input type="hidden" name="txtNumber" value="{{$room->people}}">
@@ -914,12 +993,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r5->ghichu != null)
+                                    @if ($countData > 0)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r5->ghichu}}
-                                        </span>
+                                    <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                        @foreach ($data as $d)
+                                            {{$d->note}}
+                                        @endforeach
+                                    </textarea>
                                     </div>
                                     @endif
                                 </form>
@@ -936,6 +1017,10 @@
                     @else
                         @foreach ($rooms5 as $r5)
                             <div class="btn-group">
+                                @php
+                                $data = App\phong::find($r5->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                             @if ($r5->tinhtrang ==0 && $r5->trong == 0 )
                                 <button style="color: yellow" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-times">  {{$r5->tenP}} ({{$r5->loaiP}})</i>
@@ -975,12 +1060,14 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r5->ghichu != null)
+                                    @if ($countData > 0)
                                     <div class="form-group">
                                     <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r5->ghichu}}
-                                        </span>
+                                    <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                        @foreach ($data as $d)
+                                            {{$d->note}}
+                                        @endforeach
+                                    </textarea>
                                     </div>
                                     @endif
                                 </form>
@@ -1002,6 +1089,10 @@
                     @if($count >0)
                     @foreach ($rooms6 as $r6)
                         <div class="btn-group">
+                            @php
+                                $data = App\phong::find($r6->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                                 @if(in_array($r6->id , $arr))
                                     @php
                                         $id = array_search($r6->id , $arr);
@@ -1037,6 +1128,16 @@
                                                         {{$room->phone}}
                                                 </span>
                                                 </div>
+                                                @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                                 @php
                                                     $day_create = date('Y-m-d H:i:s',time()) ;
                                                 @endphp
@@ -1089,14 +1190,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r6->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r6->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r6->trong == 1 && $r6->tinhtrang == 1)
@@ -1111,6 +1214,10 @@
                     @else
                         @foreach ($rooms6 as $r6)
                             <div class="btn-group">
+                                @php
+                                    $data = App\phong::find($r6->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                             @if ($r6->tinhtrang ==0 && $r6->trong == 0 )
                                 <button style="color: yellow" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-times">  {{$r6->tenP}} ({{$r6->loaiP}})</i>
@@ -1150,14 +1257,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r6->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r6->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r6->trong == 1 && $r6->tinhtrang == 1)
@@ -1177,6 +1286,10 @@
                     @if($count >0)
                     @foreach ($rooms7 as $r7)
                         <div class="btn-group">
+                            @php
+                                $data = App\phong::find($r7->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                                 @if(in_array($r7->id , $arr))
                                     @php
                                         $id = array_search($r7->id , $arr);
@@ -1212,6 +1325,16 @@
                                                         {{$room->phone}}
                                                 </span>
                                                 </div>
+                                                @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                                 @php
                                                     $day_create = date('Y-m-d H:i:s',time()) ;
                                                 @endphp
@@ -1264,14 +1387,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r7->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r7->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r7->trong == 1 && $r7->tinhtrang == 1)
@@ -1286,6 +1411,10 @@
                     @else
                         @foreach ($rooms7 as $r7)
                             <div class="btn-group">
+                                @php
+                                    $data = App\phong::find($r7->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                             @if ($r7->tinhtrang ==0 && $r7->trong == 0 )
                                 <button style="color: yellow" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-times">  {{$r7->tenP}} ({{$r7->loaiP}})</i>
@@ -1325,14 +1454,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r7->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r7->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r7->trong == 1 && $r7->tinhtrang == 1)
@@ -1352,6 +1483,10 @@
                     @if($count >0)
                     @foreach ($rooms8 as $r8)
                         <div class="btn-group">
+                            @php
+                                $data = App\phong::find($r8->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                                 @if(in_array($r8->id , $arr))
                                     @php
                                         $id = array_search($r8->id , $arr);
@@ -1387,6 +1522,16 @@
                                                         {{$room->phone}}
                                                 </span>
                                                 </div>
+                                                @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                                 @php
                                                     $day_create = date('Y-m-d H:i:s',time()) ;
                                                 @endphp
@@ -1439,14 +1584,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r8->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r8->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r8->trong == 1 && $r8->tinhtrang == 1)
@@ -1461,6 +1608,10 @@
                     @else
                         @foreach ($rooms8 as $r8)
                             <div class="btn-group">
+                                @php
+                                    $data = App\phong::find($r8->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                             @if ($r8->tinhtrang ==0 && $r8->trong == 0 )
                                 <button style="color: yellow" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-times">  {{$r8->tenP}} ({{$r8->loaiP}})</i>
@@ -1500,14 +1651,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r8->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r8->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r8->trong == 1 && $r8->tinhtrang == 1)
@@ -1527,6 +1680,10 @@
                     @if($count >0)
                     @foreach ($rooms9 as $r9)
                         <div class="btn-group">
+                            @php
+                                $data = App\phong::find($r9->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                                 @if(in_array($r9->id , $arr))
                                     @php
                                         $id = array_search($r9->id , $arr);
@@ -1562,6 +1719,16 @@
                                                         {{$room->phone}}
                                                 </span>
                                                 </div>
+                                                @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                                 @php
                                                     $day_create = date('Y-m-d H:i:s',time()) ;
                                                 @endphp
@@ -1614,14 +1781,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r9->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r9->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r9->trong == 1 && $r9->tinhtrang == 1)
@@ -1636,6 +1805,10 @@
                     @else
                         @foreach ($rooms9 as $r9)
                             <div class="btn-group">
+                                @php
+                                    $data = App\phong::find($r9->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                             @if ($r9->tinhtrang ==0 && $r9->trong == 0 )
                                 <button style="color: yellow" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-times">  {{$r9->tenP}} ({{$r9->loaiP}})</i>
@@ -1675,14 +1848,16 @@
                                         @endif
                                     </span>
                                     </div>
-                                    @if ($r9->ghichu != null)
-                                    <div class="form-group">
-                                    <label for="Ghi chú">Ghi chú</label>
-                                    <span class="form-control">
-                                            {{$r9->ghichu}}
-                                        </span>
-                                    </div>
-                                    @endif
+                                    @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                 </form>
                                 <div class="row" style="padding: 5px">
                                     @if ($r9->trong == 1 && $r9->tinhtrang == 1)

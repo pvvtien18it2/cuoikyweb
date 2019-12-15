@@ -42,6 +42,7 @@
     <link href="{{url('resources/icon/css/fontawesome.css')}}" rel="stylesheet">
     <link href="{{url('resources/icon/css/brands.css')}}" rel="stylesheet">
     <link href="{{url('resources/icon/css/solid.css')}}" rel="stylesheet">
+
 </head>
 <body>
     <div class="container-fluid" style="width: 100%">
@@ -51,11 +52,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="col-md-2 offset-md-10">
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    @if (Auth::user()->admin ==0)
-                        <a href="{{route('employee.bookroom.store.get')}}"><button class="btn btn-outline-success mr-sm-2">Đặt phòng</button></a>
-                    @else
-                        <a href="{{route('getdangky')}}"><button class="btn btn-outline-success mr-sm-2">Thêm nhân viên</button></a>
-                    @endif
+                    <a href="{{route('getdangky')}}"><button class="btn btn-outline-success mr-sm-2">Thêm nhân viên</button></a>
                     <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" class="my-2 my-sm-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="far fa-id-card" style="size: 30px"></i>

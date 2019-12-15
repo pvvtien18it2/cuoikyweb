@@ -135,9 +135,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-5 offset-md-5">
-                <a href="{{ url()->previous() }}"><button class="btn btn-danger">Trở lại</button></a>
-            </div>
+            {{-- <div class="col-md-5 offset-md-5"> --}}
+                <a href="{{ url()->previous() }}"  style="margin: auto"><button class="btn btn-danger">Trở lại</button></a>
+            {{-- </div> --}}
         </div>
     </div>
 </body>

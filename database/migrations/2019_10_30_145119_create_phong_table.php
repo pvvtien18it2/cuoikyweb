@@ -21,12 +21,13 @@ class CreatePhongTable extends Migration
             $table->integer('songuoi');
             $table->integer('hour');
             $table->integer('day');
-            $table->string('tinhtrang');
+            $table->integer('tinhtrang');
             $table->string('maDV');
             $table->string('maNV');
             $table->integer('trong');
             $table->integer('tang');
-            $table->integer('count')->default(0);
+            $table->integer('countPhong')->default(0);
+            $table->integer('countDichVu')->default(0);
             $table->timestamps();
 
         });

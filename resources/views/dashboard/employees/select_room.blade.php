@@ -111,7 +111,11 @@
             <tr>
                 <td>
                     @if ($arr != null)
-                            @foreach ($rooms1 as $r1)
+                        @foreach ($rooms1 as $r1)
+                            @php
+                                $data = App\phong::find($r1->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                                     @if(in_array($r1->id,$arr))
                                         <button style="color: yellow" class="btn btn-danger" type="button">
                                         <i class="fas fa-times">  {{$r1->tenP}} ({{$r1->loaiP}})</i>
@@ -128,12 +132,14 @@
                                                     <label for="Tên phòng">Tên phòng</label>
                                                     <span class="form-control">{{$r1->tenP}} ({{$r1->loaiP}})</span>
                                                 </div>
-                                                @if ($r1->ghichu != null)
+                                                @if ($countData > 0)
                                                 <div class="form-group">
-                                                    <label for="Ghi chú">Ghi chú</label>
-                                                    <span class="form-control">
-                                                        {{$r1->ghichu}}
-                                                    </span>
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
                                                 </div>
                                                 @endif
                                                 <input type="hidden" name="txtphong_id" value="{{$r1->id}}">
@@ -163,8 +169,11 @@
                         @endforeach
                         @else
                             @foreach ($rooms1 as $r1)
+                            @php
+                                $data = App\phong::find($r1->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                             <div class="btn-group">
-
                                 <button style="color: yellow" type="button"class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-check">  {{$r1->tenP}} ({{$r1->loaiP}})</i>
                                 </button>
@@ -176,12 +185,14 @@
                                             <label for="Tên phòng">Tên phòng</label>
                                             <span class="form-control">{{$r1->tenP}} ({{$r1->loaiP}})</span>
                                         </div>
-                                        @if ($r1->ghichu != null)
+                                        @if ($countData > 0)
                                         <div class="form-group">
-                                            <label for="Ghi chú">Ghi chú</label>
-                                            <span class="form-control">
-                                                {{$r1->ghichu}}
-                                            </span>
+                                        <label for="Ghi chú">Ghi chú</label>
+                                        <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                            @foreach ($data as $d)
+                                                {{$d->note}}
+                                            @endforeach
+                                        </textarea>
                                         </div>
                                         @endif
                                         <input type="hidden" name="txtphong_id" value="{{$r1->id}}">
@@ -231,6 +242,10 @@
                 <td>
                     @if ($arr != null)
                             @foreach ($rooms2 as $r2)
+                            @php
+                                $data = App\phong::find($r2->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                                     @if(in_array($r2->id,$arr))
                                         <button style="color: yellow" class="btn btn-danger" type="button">
                                         <i class="fas fa-times">  {{$r2->tenP}} ({{$r2->loaiP}})</i>
@@ -247,12 +262,14 @@
                                                     <label for="Tên phòng">Tên phòng</label>
                                                     <span class="form-control">{{$r2->tenP}} ({{$r2->loaiP}})</span>
                                                 </div>
-                                                @if ($r2->ghichu != null)
+                                                @if ($countData > 0)
                                                 <div class="form-group">
-                                                    <label for="Ghi chú">Ghi chú</label>
-                                                    <span class="form-control">
-                                                        {{$r2->ghichu}}
-                                                    </span>
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
                                                 </div>
                                                 @endif
                                                 <input type="hidden" name="txtphong_id" value="{{$r2->id}}">
@@ -275,6 +292,10 @@
                         @endforeach
                         @else
                             @foreach ($rooms2 as $r2)
+                            @php
+                                $data = App\phong::find($r2->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                             <div class="btn-group">
 
                                 <button style="color: yellow" type="button"class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -288,12 +309,14 @@
                                             <label for="Tên phòng">Tên phòng</label>
                                             <span class="form-control">{{$r2->tenP}} ({{$r2->loaiP}})</span>
                                         </div>
-                                        @if ($r2->ghichu != null)
+                                        @if ($countData > 0)
                                         <div class="form-group">
-                                            <label for="Ghi chú">Ghi chú</label>
-                                            <span class="form-control">
-                                                {{$r2->ghichu}}
-                                            </span>
+                                        <label for="Ghi chú">Ghi chú</label>
+                                        <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                            @foreach ($data as $d)
+                                                {{$d->note}}
+                                            @endforeach
+                                        </textarea>
                                         </div>
                                         @endif
                                         <input type="hidden" name="txtphong_id" value="{{$r2->id}}">
@@ -310,6 +333,10 @@
                 <td>
                     @if ($arr != null)
                             @foreach ($rooms3 as $r3)
+                                @php
+                                    $data = App\phong::find($r3->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                                     @if(in_array($r3->id,$arr))
                                         <button style="color: yellow" class="btn btn-danger" type="button">
                                         <i class="fas fa-times">  {{$r3->tenP}} ({{$r3->loaiP}})</i>
@@ -326,12 +353,14 @@
                                                     <label for="Tên phòng">Tên phòng</label>
                                                     <span class="form-control">{{$r3->tenP}} ({{$r3->loaiP}})</span>
                                                 </div>
-                                                @if ($r3->ghichu != null)
+                                                @if ($countData > 0)
                                                 <div class="form-group">
-                                                    <label for="Ghi chú">Ghi chú</label>
-                                                    <span class="form-control">
-                                                        {{$r3->ghichu}}
-                                                    </span>
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
                                                 </div>
                                                 @endif
                                                 <input type="hidden" name="txtphong_id" value="{{$r3->id}}">
@@ -354,6 +383,10 @@
                         @endforeach
                         @else
                             @foreach ($rooms3 as $r3)
+                            @php
+                                $data = App\phong::find($r3->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                             <div class="btn-group">
 
                                 <button style="color: yellow" type="button"class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -367,12 +400,14 @@
                                             <label for="Tên phòng">Tên phòng</label>
                                             <span class="form-control">{{$r3->tenP}} ({{$r3->loaiP}})</span>
                                         </div>
-                                        @if ($r3->ghichu != null)
+                                        @if ($countData > 0)
                                         <div class="form-group">
-                                            <label for="Ghi chú">Ghi chú</label>
-                                            <span class="form-control">
-                                                {{$r3->ghichu}}
-                                            </span>
+                                        <label for="Ghi chú">Ghi chú</label>
+                                        <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                            @foreach ($data as $d)
+                                                {{$d->note}}
+                                            @endforeach
+                                        </textarea>
                                         </div>
                                         @endif
                                         <input type="hidden" name="txtphong_id" value="{{$r3->id}}">
@@ -389,6 +424,10 @@
                 <td>
                     @if ($arr != null)
                             @foreach ($rooms4 as $r4)
+                                @php
+                                    $data = App\phong::find($r4->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                                     @if(in_array($r4->id,$arr))
                                         <button style="color: yellow" class="btn btn-danger" type="button">
                                         <i class="fas fa-times">  {{$r4->tenP}} ({{$r4->loaiP}})</i>
@@ -405,12 +444,14 @@
                                                     <label for="Tên phòng">Tên phòng</label>
                                                     <span class="form-control">{{$r4->tenP}} ({{$r4->loaiP}})</span>
                                                 </div>
-                                                @if ($r4->ghichu != null)
+                                                @if ($countData > 0)
                                                 <div class="form-group">
-                                                    <label for="Ghi chú">Ghi chú</label>
-                                                    <span class="form-control">
-                                                        {{$r4->ghichu}}
-                                                    </span>
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
                                                 </div>
                                                 @endif
                                                 <input type="hidden" name="txtphong_id" value="{{$r4->id}}">
@@ -433,6 +474,10 @@
                         @endforeach
                         @else
                             @foreach ($rooms4 as $r4)
+                            @php
+                                $data = App\phong::find($r4->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                             <div class="btn-group">
 
                                 <button style="color: yellow" type="button"class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -446,14 +491,16 @@
                                             <label for="Tên phòng">Tên phòng</label>
                                             <span class="form-control">{{$r4->tenP}} ({{$r4->loaiP}})</span>
                                         </div>
-                                        @if ($r4->ghichu != null)
-                                        <div class="form-group">
-                                            <label for="Ghi chú">Ghi chú</label>
-                                            <span class="form-control">
-                                                {{$r4->ghichu}}
-                                            </span>
-                                        </div>
-                                        @endif
+                                        @if ($countData > 0)
+                                                <div class="form-group">
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
+                                                </div>
+                                                @endif
                                         <input type="hidden" name="txtphong_id" value="{{$r4->id}}">
                                         <input type="hidden" name="txtnextID" value="{{$idNow->id}}">
                                         <button type="submit" class="btn btn-success">Chọn</button>
@@ -468,6 +515,10 @@
                 <td>
                     @if ($arr != null)
                             @foreach ($rooms5 as $r5)
+                            @php
+                                $data = App\phong::find($r5->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                                     @if(in_array($r5->id,$arr))
                                         <button style="color: yellow" class="btn btn-danger" type="button">
                                         <i class="fas fa-times">  {{$r5->tenP}} ({{$r5->loaiP}})</i>
@@ -484,12 +535,14 @@
                                                     <label for="Tên phòng">Tên phòng</label>
                                                     <span class="form-control">{{$r5->tenP}} ({{$r5->loaiP}})</span>
                                                 </div>
-                                                @if ($r5->ghichu != null)
+                                                @if ($countData > 0)
                                                 <div class="form-group">
-                                                    <label for="Ghi chú">Ghi chú</label>
-                                                    <span class="form-control">
-                                                        {{$r5->ghichu}}
-                                                    </span>
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
                                                 </div>
                                                 @endif
                                                 <input type="hidden" name="txtphong_id" value="{{$r5->id}}">
@@ -512,6 +565,10 @@
                         @endforeach
                         @else
                             @foreach ($rooms5 as $r5)
+                            @php
+                                $data = App\phong::find($r5->id)->ghichu()->get();
+                                $countData = count($data);
+                            @endphp
                             <div class="btn-group">
 
                                 <button style="color: yellow" type="button"class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -525,12 +582,14 @@
                                             <label for="Tên phòng">Tên phòng</label>
                                             <span class="form-control">{{$r5->tenP}} ({{$r5->loaiP}})</span>
                                         </div>
-                                        @if ($r5->ghichu != null)
+                                        @if ($countData > 0)
                                         <div class="form-group">
-                                            <label for="Ghi chú">Ghi chú</label>
-                                            <span class="form-control">
-                                                {{$r5->ghichu}}
-                                            </span>
+                                        <label for="Ghi chú">Ghi chú</label>
+                                        <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                            @foreach ($data as $d)
+                                                {{$d->note}}
+                                            @endforeach
+                                        </textarea>
                                         </div>
                                         @endif
                                         <input type="hidden" name="txtphong_id" value="{{$r5->id}}">
@@ -547,6 +606,10 @@
                 <td>
                     @if ($arr != null)
                             @foreach ($rooms6 as $r6)
+                                @php
+                                    $data = App\phong::find($r6->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                                     @if(in_array($r6->id,$arr))
                                         <button style="color: yellow" class="btn btn-danger" type="button">
                                         <i class="fas fa-times">  {{$r6->tenP}} ({{$r6->loaiP}})</i>
@@ -563,12 +626,14 @@
                                                     <label for="Tên phòng">Tên phòng</label>
                                                     <span class="form-control">{{$r6->tenP}} ({{$r6->loaiP}})</span>
                                                 </div>
-                                                @if ($r6->ghichu != null)
+                                                @if ($countData > 0)
                                                 <div class="form-group">
-                                                    <label for="Ghi chú">Ghi chú</label>
-                                                    <span class="form-control">
-                                                        {{$r6->ghichu}}
-                                                    </span>
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
                                                 </div>
                                                 @endif
                                                 <input type="hidden" name="txtphong_id" value="{{$r6->id}}">
@@ -591,6 +656,10 @@
                         @endforeach
                         @else
                             @foreach ($rooms6 as $r6)
+                                @php
+                                    $data = App\phong::find($r6->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                             <div class="btn-group">
 
                                 <button style="color: yellow" type="button"class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -604,12 +673,14 @@
                                             <label for="Tên phòng">Tên phòng</label>
                                             <span class="form-control">{{$r6->tenP}} ({{$r6->loaiP}})</span>
                                         </div>
-                                        @if ($r6->ghichu != null)
+                                        @if ($countData > 0)
                                         <div class="form-group">
-                                            <label for="Ghi chú">Ghi chú</label>
-                                            <span class="form-control">
-                                                {{$r6->ghichu}}
-                                            </span>
+                                        <label for="Ghi chú">Ghi chú</label>
+                                        <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                            @foreach ($data as $d)
+                                                {{$d->note}}
+                                            @endforeach
+                                        </textarea>
                                         </div>
                                         @endif
                                         <input type="hidden" name="txtphong_id" value="{{$r6->id}}">
@@ -626,6 +697,10 @@
                 <td>
                     @if ($arr != null)
                             @foreach ($rooms7 as $r7)
+                                @php
+                                    $data = App\phong::find($r7->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                                     @if(in_array($r7->id,$arr))
                                         <button style="color: yellow" class="btn btn-danger" type="button">
                                         <i class="fas fa-times">  {{$r7->tenP}} ({{$r7->loaiP}})</i>
@@ -642,12 +717,14 @@
                                                     <label for="Tên phòng">Tên phòng</label>
                                                     <span class="form-control">{{$r7->tenP}} ({{$r7->loaiP}})</span>
                                                 </div>
-                                                @if ($r7->ghichu != null)
+                                                @if ($countData > 0)
                                                 <div class="form-group">
-                                                    <label for="Ghi chú">Ghi chú</label>
-                                                    <span class="form-control">
-                                                        {{$r7->ghichu}}
-                                                    </span>
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
                                                 </div>
                                                 @endif
                                                 <input type="hidden" name="txtphong_id" value="{{$r7->id}}">
@@ -670,6 +747,10 @@
                         @endforeach
                         @else
                             @foreach ($rooms7 as $r7)
+                                @php
+                                    $data = App\phong::find($r7->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                             <div class="btn-group">
 
                                 <button style="color: yellow" type="button"class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -683,12 +764,14 @@
                                             <label for="Tên phòng">Tên phòng</label>
                                             <span class="form-control">{{$r7->tenP}} ({{$r7->loaiP}})</span>
                                         </div>
-                                        @if ($r7->ghichu != null)
+                                        @if ($countData > 0)
                                         <div class="form-group">
-                                            <label for="Ghi chú">Ghi chú</label>
-                                            <span class="form-control">
-                                                {{$r7->ghichu}}
-                                            </span>
+                                        <label for="Ghi chú">Ghi chú</label>
+                                        <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                            @foreach ($data as $d)
+                                                {{$d->note}}
+                                            @endforeach
+                                        </textarea>
                                         </div>
                                         @endif
                                         <input type="hidden" name="txtphong_id" value="{{$r7->id}}">
@@ -705,6 +788,10 @@
                 <td>
                     @if ($arr != null)
                             @foreach ($rooms8 as $r8)
+                                @php
+                                    $data = App\phong::find($r8->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                                     @if(in_array($r8->id,$arr))
                                         <button style="color: yellow" class="btn btn-danger" type="button">
                                         <i class="fas fa-times">  {{$r8->tenP}} ({{$r8->loaiP}})</i>
@@ -721,12 +808,14 @@
                                                     <label for="Tên phòng">Tên phòng</label>
                                                     <span class="form-control">{{$r8->tenP}} ({{$r8->loaiP}})</span>
                                                 </div>
-                                                @if ($r8->ghichu != null)
+                                                @if ($countData > 0)
                                                 <div class="form-group">
-                                                    <label for="Ghi chú">Ghi chú</label>
-                                                    <span class="form-control">
-                                                        {{$r8->ghichu}}
-                                                    </span>
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
                                                 </div>
                                                 @endif
                                                 <input type="hidden" name="txtphong_id" value="{{$r8->id}}">
@@ -749,6 +838,10 @@
                         @endforeach
                         @else
                             @foreach ($rooms8 as $r8)
+                                @php
+                                    $data = App\phong::find($r8->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                             <div class="btn-group">
 
                                 <button style="color: yellow" type="button"class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -762,12 +855,14 @@
                                             <label for="Tên phòng">Tên phòng</label>
                                             <span class="form-control">{{$r8->tenP}} ({{$r8->loaiP}})</span>
                                         </div>
-                                        @if ($r8->ghichu != null)
+                                        @if ($countData > 0)
                                         <div class="form-group">
-                                            <label for="Ghi chú">Ghi chú</label>
-                                            <span class="form-control">
-                                                {{$r8->ghichu}}
-                                            </span>
+                                        <label for="Ghi chú">Ghi chú</label>
+                                        <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                            @foreach ($data as $d)
+                                                {{$d->note}}
+                                            @endforeach
+                                        </textarea>
                                         </div>
                                         @endif
                                         <input type="hidden" name="txtphong_id" value="{{$r8->id}}">
@@ -784,6 +879,10 @@
                 <td>
                     @if ($arr != null)
                             @foreach ($rooms9 as $r9)
+                                @php
+                                    $data = App\phong::find($r9->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                                     @if(in_array($r9->id,$arr))
                                         <button style="color: yellow" class="btn btn-danger" type="button">
                                         <i class="fas fa-times">  {{$r9->tenP}} ({{$r9->loaiP}})</i>
@@ -800,12 +899,14 @@
                                                     <label for="Tên phòng">Tên phòng</label>
                                                     <span class="form-control">{{$r9->tenP}} ({{$r9->loaiP}})</span>
                                                 </div>
-                                                @if ($r9->ghichu != null)
+                                                @if ($countData > 0)
                                                 <div class="form-group">
-                                                    <label for="Ghi chú">Ghi chú</label>
-                                                    <span class="form-control">
-                                                        {{$r9->ghichu}}
-                                                    </span>
+                                                <label for="Ghi chú">Ghi chú</label>
+                                                <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                                    @foreach ($data as $d)
+                                                        {{$d->note}}
+                                                    @endforeach
+                                                </textarea>
                                                 </div>
                                                 @endif
                                                 <input type="hidden" name="txtphong_id" value="{{$r9->id}}">
@@ -828,6 +929,10 @@
                         @endforeach
                         @else
                             @foreach ($rooms9 as $r9)
+                                @php
+                                    $data = App\phong::find($r9->id)->ghichu()->get();
+                                    $countData = count($data);
+                                @endphp
                             <div class="btn-group">
 
                                 <button style="color: yellow" type="button"class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -841,12 +946,14 @@
                                             <label for="Tên phòng">Tên phòng</label>
                                             <span class="form-control">{{$r9->tenP}} ({{$r9->loaiP}})</span>
                                         </div>
-                                        @if ($r9->ghichu != null)
+                                        @if ($countData > 0)
                                         <div class="form-group">
-                                            <label for="Ghi chú">Ghi chú</label>
-                                            <span class="form-control">
-                                                {{$r9->ghichu}}
-                                            </span>
+                                        <label for="Ghi chú">Ghi chú</label>
+                                        <textarea class="form-control" rows="2" id="Ghi chú" name="note">
+                                            @foreach ($data as $d)
+                                                {{$d->note}}
+                                            @endforeach
+                                        </textarea>
                                         </div>
                                         @endif
                                         <input type="hidden" name="txtphong_id" value="{{$r9->id}}">

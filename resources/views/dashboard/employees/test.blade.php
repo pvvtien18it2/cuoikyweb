@@ -20,7 +20,7 @@
         $tienphong = 0;
         $days =  $timeOld->diffInDays(Carbon::now()).'<br>';
         $times = $timeOld->diffInHours(Carbon::now()).'<br>';
-        echo $check = $timeOld->diffForHumans(Carbon::now());
+        $check = $timeOld->diffForHumans(Carbon::now());
         $day = (int)$days;
         $time = (int)$times;
         $tien = DB::table("phong")->where('id',$room->id)->first();
