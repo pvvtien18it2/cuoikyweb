@@ -26,6 +26,15 @@
         }
     @endphp
     <div class="container">
+            @if(count($errors) > 0)
+            <div class="alert alert-danger alert-dismissible fade show" style="margin: auto ; text-align: left">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <div class="col-md-7 offset-md-5">
+                    {!! $errors->first('tenP') !!}<br>
+                    {!! $errors->first('note') !!}<br>
+                </div>
+            </div>
+            @endif
         <div class="row">
             <h2 style="text-align: center ; font-size: 70px ; padding: 20px; margin: auto">Danh sách ghi chú</h2>
             <!-- Button trigger modal -->
@@ -39,6 +48,7 @@
                     <h5 class="modal-title" id="exampleModalCenterTitle">Thêm ghi chú</h5>
                 </div>
                 <div class="modal-body">
+
                     <form action="{{route('employee.addghichu')}}" method="head">
                         @csrf
                         <div class="form-group row">

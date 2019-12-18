@@ -156,13 +156,6 @@
                                                             <button type="submit" class="btn btn-success">Chọn</button>
                                                             </form>
                                                         @endif
-                                                        {{--  @if($checkMin >= 4 && $day_create->isPast())
-                                                            </form>
-                                                            <a href="{{route('employee.bookroom.store.get')}}"><button type="button" class="btn btn-success">Chọn</button></a>
-                                                        @else
-                                                            <button type="submit" class="btn btn-success">Chọn</button>
-                                                            </form>
-                                                        @endif  --}}
                                         </div>
                                     </div>
                                     @endif
@@ -197,18 +190,6 @@
                                         @endif
                                         <input type="hidden" name="txtphong_id" value="{{$r1->id}}">
                                         <input type="hidden" name="txtnextID" value="{{$idNow->id}}">
-                                        {{--  @php
-                                            $c = App\datphong::find($idNow->id);
-                                            $day_create = Carbon::parse($c->day_create);
-                                            $checkMin = $now->diffInMinutes($day_create);
-                                        @endphp
-                                            @if($checkMin >= 4 && $day_create->isPast())
-                                                </form>
-                                                <a href="{{route('employee.delay',$idNow->id)}}"><button class="btn btn-success">Chọn</button></a>
-                                            @else
-                                                <button type="submit" class="btn btn-success">Chọn</button>
-                                                </form>
-                                            @endif  --}}
                                             @php
                                             $c = App\datphong::find($idNow->id);
                                             $day_create = Carbon::parse($c->day_create);
@@ -221,17 +202,6 @@
                                                 <button type="submit" class="btn btn-success">Chọn</button>
                                                 </form>
                                             @endif
-                                            {{--  @php
-                                                    $c = App\datphong::find($idNow->id);
-                                                    $day_create = Carbon::parse($c->day_create);
-                                                    $checkMin = $now->diffInMinutes($day_create);
-                                                    if($checkMin >= 1 && $day_create->isPast()){
-                                                        <a href="{{route('employee.delay',$idNow->id)}}"><button type="submit" class="btn btn-success">Chọn</button></a>
-                                                    }else{
-                                                        <button type="submit" class="btn btn-success">Chọn</button>
-                                                    }
-                                                @endphp
-                                        </form>  --}}
                                 </div>
                             </div>
                             @endforeach

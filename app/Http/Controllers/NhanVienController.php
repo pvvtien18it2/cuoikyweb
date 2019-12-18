@@ -5,6 +5,7 @@ use App\Http\Requests\DangKyRequest;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class NhanVienController extends Controller
 {
@@ -94,7 +95,7 @@ class NhanVienController extends Controller
     }
     public function logout(){
         Auth::logout();
-        return redirect('/');
+        return redirect()->route('trangchu');
     }
     //Doanh thu phòng
     public function doanhthuphong(){

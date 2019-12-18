@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\nhanvien;
+use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\DangKyRequest;
 class DangKyController extends Controller
@@ -12,7 +12,7 @@ class DangKyController extends Controller
         return view('member.dangky');
     }
     public function  postdangky(DangKyRequest $request){
-        $member = new nhanvien();
+        $member = new User();
         if ($request->pass === $request->re_pass){
             $member->name = $request->name;
             $member->phone = $request->phone;
@@ -28,4 +28,3 @@ class DangKyController extends Controller
         }
     }
 }
-

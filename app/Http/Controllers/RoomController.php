@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\phong;
 use App\dichvu;
 use App\Http\Requests\ThuePhongRequest;
+use App\Http\Requests\DatPhongTruocRequest;
+use App\Http\Requests\GhiChuRequest;
 use App\quanlyphong;
 use Illuminate\Http\Request;
 use App\datphong;
@@ -134,12 +136,20 @@ class RoomController extends Controller
         return view('dashboard.employees.book_room',compact('book_room'));
 
     }
-    //----------------------------------------------Đặt phòng trước------------------------------------------------
 
-    public function getdatphongtruoc(){
-        return view('dashboard.employees.datphong');
+    //------------------------------Dặt phòng (khách)-----------------------
+
+    public function getdatphongtruockhach(){
+        return view('b.datphong');
     }
-    public function postdatphongtruoc(Request $request){
+    //------------------------------Chọn phòng (khách)-------------------
+
+    public function chonphongkhach(){
+        $idNow = datphong::all()->last();
+        return view('b.chonphong',compact('idNow'));
+    }
+    //-----------------Đặt phòng thành công (khách)-----------------------
+    public function postdatphongtruockhach(DatPhongTruocRequest $request){
         $dayBookRoom = Carbon::parse($request->txtBookRoom);
         $dayOutRoom = Carbon::parse($request->txtOutRoom);
         // Month
@@ -159,29 +169,104 @@ class RoomController extends Controller
             return redirect()->route('employee.bookroom.store.get')->with('note', 'Ngày đi không hợp lệ so với ngày đến');
         }elseif($request->txtNumber > 4 ){
             return redirect()->route('employee.bookroom.store.get')->with('notepeople', 'Xin lỗi giới hạn người ở là 4');
+        }elseif($request->txtNumber < 1){
+            return redirect()->route('employee.bookroom.store.get')->with('minpeople', 'Xin lỗi ít nhất 1 người');
         }
         else{
             //datphong
-            $datphong = new datphong();
-            $datphong->name = $request->txtName;
-            $datphong->number_cmnd = $request->txtCMND;
-            $datphong->phone = $request->txtCallNumber;
-            $datphong->people = $request->txtNumber;
-            $datphong->dayBookRoom = $request->txtBookRoom;
-            $datphong->dayOutRoom = $request->txtOutRoom;
-            $datphong->token = $request->_token;
-            $datphong->day_create = Carbon::now();
-            $datphong->save();
-            //phong
-
-            return redirect()->route('employee.chonphong');
+                $datphong = new datphong();
+                $datphong->name = $request->txtName;
+                $datphong->number_cmnd = $request->txtCMND;
+                $datphong->phone = $request->txtCallNumber;
+                $datphong->people = $request->txtNumber;
+                $datphong->dayBookRoom = $request->txtBookRoom;
+                $datphong->dayOutRoom = $request->txtOutRoom;
+                $datphong->token = $request->_token;
+                $datphong->day_create = Carbon::now();
+                $datphong->save();
+                //phong
+                return redirect()->route('employee.chonphongkhach');
         }
     }
+
+    //-----------------------------------update chọn phòng(khách)--------------------------------
+    public function updatechonphongkhach(Request $request){
+        $room = datphong::find($request->txtnextID);
+        $room->phong_id = $request->txtphong_id;
+        $room->save();
+        return redirect()->route('trangchu');
+    }
+
+    // ------------------------------------delay----------------------------------------------
+    public function xoadelaykhach($id){
+        $delete = datphong::find($id);
+        $delete->delete();
+        return redirect()->route('employee.bookroom.get.khach')->with('mess', 'Bạn đã dừng lại quá lâu vui lòng nhập lại');
+    }
+    //--------------------------------hủy----------------------------------
+    public function huychonphongkhach($id){
+        $delete = datphong::find($id);
+        $delete->delete();
+        return redirect()->route('trangchu');
+    }
+
+    //----------------------------------------------Đặt phòng trước------------------------------------------------
+
+    public function getdatphongtruoc(){
+        return view('dashboard.employees.datphong');
+    }
+
     //-----------------------------------------Chon phong------------------------------
     public function chonphong(){
         $idNow = datphong::all()->last();
         return view('dashboard.employees.select_room',compact('idNow'));
     }
+
+
+    //----------------------------Đặt phòng thành công-----------------------------------------------
+
+    public function postdatphongtruoc(DatPhongTruocRequest $request){
+        $dayBookRoom = Carbon::parse($request->txtBookRoom);
+        $dayOutRoom = Carbon::parse($request->txtOutRoom);
+        // Month
+        $monthBook = $dayBookRoom->month;
+        $monthOut = $dayOutRoom->month;
+        // Day
+        $dayBook = $dayBookRoom->day;
+        $dayOut = $dayOutRoom->day;
+        // Check day
+        $checkDay = $dayBookRoom->diffInDays($dayOutRoom);
+        // Hour
+        $hourBook = $dayBookRoom->hour;
+        $hourOut = $dayOutRoom->hour;
+        if($dayBookRoom->isPast() || $dayOutRoom->isPast()){
+            return redirect()->route('employee.bookroom.store.get')->with('noteBookRoom', 'Ngày đến hoặc đi đã qua');
+        }elseif($monthBook == $monthOut && $dayBook > $dayOut || $monthBook == $monthOut && $dayBook ==  $dayOut && $hourBook > $hourOut || $monthBook < $monthOut || $monthBook > $monthOut && $checkDay <= 0){
+            return redirect()->route('employee.bookroom.store.get')->with('note', 'Ngày đi không hợp lệ so với ngày đến');
+        }elseif($request->txtNumber > 4 ){
+            return redirect()->route('employee.bookroom.store.get')->with('notepeople', 'Xin lỗi giới hạn người ở là 4');
+        }elseif($request->txtNumber < 1){
+            return redirect()->route('employee.bookroom.store.get')->with('minpeople', 'Xin lỗi ít nhất 1 người');
+        }
+        else{
+                //datphong
+                $datphong = new datphong();
+                $datphong->name = $request->txtName;
+                $datphong->number_cmnd = $request->txtCMND;
+                $datphong->phone = $request->txtCallNumber;
+                $datphong->people = $request->txtNumber;
+                $datphong->dayBookRoom = $request->txtBookRoom;
+                $datphong->dayOutRoom = $request->txtOutRoom;
+                $datphong->token = $request->_token;
+                $datphong->day_create = Carbon::now();
+                $datphong->save();
+                //phong
+
+                return redirect()->route('employee.chonphong');
+
+        }
+    }
+
     //-----------------------------------update chọn phòng--------------------------------
     public function updatechonphong(Request $request){
         $room = datphong::find($request->txtnextID);
@@ -192,30 +277,38 @@ class RoomController extends Controller
     // -----------------------------------------------Dat phong---------------------------------
     public function datphong(ThuePhongRequest $request , $id)
     {
-        $datphong = new quanlyphong();
-        $datphong->phong_id = $id;
-        $datphong->name = $request->txtName;
-        $datphong->number_cmnd = $request->txtCMND;
-        $datphong->people = $request->txtNumber;
-        $datphong->day_create = $request->day_create;
-        $datphong->save();
-        $room = phong::find($request->phong_id);
-        $room->tinhtrang = 0;
-        $room->trong = 0;
-        $room->save();
-        $book = datphong::where('token',$request->token)->first();
-        if($book != null){
-            $book->delete();
+        if($request->txtNumber > 4 ){
+            return redirect()->route('employee.bookroom.store.get')->with('notepeople', 'Xin lỗi giới hạn người ở là 4');
+        }elseif($request->txtNumber < 1){
+            return redirect()->route('employee.bookroom.store.get')->with('minpeople', 'Xin lỗi ít nhất 1 người');
+        }else{
+            $datphong = new quanlyphong();
+            $datphong->phong_id = $id;
+            $datphong->name = $request->txtName;
+            $datphong->number_cmnd = $request->txtCMND;
+            $datphong->people = $request->txtNumber;
+            $datphong->day_create = $request->day_create;
+            $datphong->save();
+            $room = phong::find($request->phong_id);
+            $room->tinhtrang = 0;
+            $room->trong = 0;
+            $room->save();
+            $book = datphong::where('token',$request->token)->first();
+            if($book != null){
+                $book->delete();
+            }
+            return redirect()->route('employee.index')->with('mess','Đã hoàn thành việc cho thuê phòng: '.$room->tenP);
         }
 
-        return redirect()->route('employee.index')->with('mess','Đã hoàn thành việc cho thuê phòng: '.$room->tenP);
     }
+
     // ------------------------------------delay----------------------------------------------
     public function xoadelay($id){
         $delete = datphong::find($id);
         $delete->delete();
         return redirect()->route('employee.bookroom.store.get')->with('mess', 'Bạn đã dừng lại quá lâu vui lòng nhập lại');
     }
+    //--------------------------------hủy----------------------------------
     public function huychonphong($id){
         $delete = datphong::find($id);
         $delete->delete();
@@ -249,42 +342,6 @@ class RoomController extends Controller
         }
         return redirect()->route('employee.index')->with('status', 'Đã thanh toán thành công phòng '.'<b>'.$tien->tenP.'</b> <br>Với tiền phòng là: '.number_format($request->tienphong).'đ<br>Tiền dịch vụ là: '.number_format($request->dichvu).'đ<br>Tổng cộng là: '.number_format($request->tienphong+ $request->dichvu).'đ');
     }
-    // // -------------------------------edit_empty_room-----------------------------------------------------
-    // public function edit_empty_room($id)
-    // {
-    //     $data = phong::find($id);
-    //     return view('dashboard.employees.edit_empty_room', compact('data'));
-    // }
-    // // ----------------------------------update_empty_room-------------------------------
-    // public function update_empty_room(Request $request, $id)
-    // {
-    //     $data = phong::find($id);
-    //     $data->trong = $request->txtTrong;
-    //     $data->save();
-    //     return redirect()->route('employee.index');
-    // }
-
-    // // ---------------------------------tinhtrang--------------------------------
-    // public function tinhtrang()
-    // {
-    //     $clean_rooms = phong::all()->where('tinhtrang', 0);
-    //     return view('dashboard.employees.clean_room', compact('clean_rooms'));
-    // }
-    // // ----------------------------edit_clean_room-----------------------------------
-    // public function edit_clean_room($id)
-    // {
-    //     $data = phong::find($id);
-    //     return view('dashboard.employees.edit_clean_room', compact('data'));
-    // }
-    // // ----------------------------update_clean_room-----------------------------------
-    // public function update_clean_room(Request $request, $id)
-    // {
-    //     $data = phong::find($id);
-    //     $data->tinhtrang = $request->txtTinhTrang;
-    //     $data->save();
-    //     return redirect()->route('employee.index');
-    // }
-
     //quản lý
     public function quanly()
     {
@@ -298,7 +355,7 @@ class RoomController extends Controller
         return view('dashboard.employees.ghichu',compact('notes'));
     }
     //thêm ghi chú
-    public function addghichu(Request $request){
+    public function addghichu(GhiChuRequest $request){
         $phong_id = phong::where('tenP',$request->tenP)->first();
         $ghichu = new ghichu();
         $ghichu->phong_id = $phong_id->id;

@@ -36,6 +36,27 @@
                 {{ session('mess') }}
             </div>
         @endif
+        @if (session('minpeople'))
+        <div class="alert alert-danger alert-dismissible fade show" style="margin: auto ; text-align: center">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ session('minpeople') }}
+        </div>
+        @endif
+        {{-- Errors --}}
+        @if(count($errors) > 0)
+        <div class="alert alert-danger alert-dismissible fade show" style="margin: auto ; text-align: left">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <div class="col-md-7 offset-md-5">
+                    {!! $errors->first('txtName') !!}<br>
+                    {!! $errors->first('txtCMND') !!}<br>
+                    {!! $errors->first('txtNumber') !!}<br>
+                    {!! $errors->first('txtCallNumber') !!}<br>
+                    {!! $errors->first('txtBookRoom') !!}<br>
+                    {!! $errors->first('txtOutRoom') !!}<br>
+                </div>
+            </div>
+        @endif
+
         <div class="row">
             <form action="{{route('employee.bookroom.store')}}" method="post" class="form-control-lg " style="margin: auto; width: 800px; margin-top: 45px">
                 @csrf
@@ -78,7 +99,12 @@
                 <div class="row">
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-left: 70%">
                         <button class="btn btn-success" type="submit">Hoàn thành</button>
+                        @if(Auth::check() == 1)
                         <a href="{{route('employee.index')}}" class="btn btn-danger" style="margin-left: 20px">Hủy</a>
+                        @else
+                        <a href="{{route('trangchu')}}" style="margin-left: 20px" class="btn btn-danger">Trở lại</a>
+                        @endif
+
                     </div>
                 </div>
             </form>

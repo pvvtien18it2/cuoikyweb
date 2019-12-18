@@ -10,6 +10,20 @@
 <body>
     <div class="container">
         <div class="row">
+            @if (session('notepeople'))
+            <div class="alert alert-danger alert-dismissible fade show" style="margin: auto ; text-align: center">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ session('notepeople') }}
+            </div>
+            @endif
+            @if (session('minpeople'))
+            <div class="alert alert-danger alert-dismissible fade show" style="margin: auto ; text-align: center">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ session('minpeople') }}
+            </div>
+            @endif
+        </div>
+        <div class="row">
                 <form action="{{route('employee.datphong',$book_room->id)}}" method="head" class="form-control-lg " style="margin: auto; width: 800px; margin-top: 50px">
                     @csrf
                     @php

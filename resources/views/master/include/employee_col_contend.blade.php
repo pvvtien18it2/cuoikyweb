@@ -28,6 +28,16 @@
                 Thuê phòng
             </button>
         </a>
+        <a href="/cuoikyweb/employee/events" style="text-decoration: none">
+            <button type="button" class="list-group-item list-group-item-action">
+                Danh sách sự kiện
+            </button>
+        </a>
+        <a href="/cuoikyweb/employee/adcontact" style="text-decoration: none">
+            <button type="button" class="list-group-item list-group-item-action">
+                Ý kiến phản hồi của khách hàng
+            </button>
+        </a>
         <a href="{!!route('employee.quanly')!!}" style="text-decoration: none">
             <button type="button" class="list-group-item list-group-item-action">
                 Dịch vụ và thanh toán
@@ -45,4 +55,5 @@
                 <span class="badge badge-primary badge-pill">{{$countNote}}</span>
             </button>
         </a>
+
     </div>
