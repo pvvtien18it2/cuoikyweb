@@ -16,9 +16,18 @@ Route::get('/', function () {
 })->name('trangchu');
 
 
-Route::get('phong', function () {
-    return view('b.rooms');
-})->name('phong');
+Route::get('phong/1', function () {
+    return view('b.rooms1');
+})->name('phong1');
+Route::get('phong/2', function () {
+    return view('b.rooms2');
+})->name('phong2');
+Route::get('phong/3', function () {
+    return view('b.rooms3');
+})->name('phong3');
+Route::get('phong/4', function () {
+    return view('b.rooms4');
+})->name('phong4');
 
 Route::get('datphongthanhcong', function () {
     return view('b.tcphong');
@@ -81,19 +90,15 @@ Route::get('sukien','EventsController@sukien')->name('sukien');
 
 //Đặt phòng(khách)
 
+//Chọn phòng
+// Route::get('chonphongkhach','RoomController@chonphongkhach')->name('employee.chonphongkhach');
     Route::get('datphongkhach','RoomController@getdatphongtruockhach')->name('employee.bookroom.store.get.khach');
-    //Chọn phòng
-    Route::get('chonphongkhach','RoomController@chonphongkhach')->name('employee.chonphongkhach');
     Route::post('datphongkhach','RoomController@postdatphongtruockhach')->name('employee.bookroom.store.khach');
         //Update chọn phòng
     Route::get('updatechonphong','RoomController@updatechonphongkhach')->name('employee.updatechonphongkhach');
 
-    //dừng lại quá lâu
-    Route::get('delay/{id}','RoomController@xoadelaykhach')->name('employee.delay.khach');
-
-    //hủy chọn phòng
-    Route::get('huy/{id}','RoomController@huychonphongkhach')->name('employee.huy.khach');
-
+//Xem sự kiện
+Route::get('xemthem/{id}', 'EventsController@xemthem')->name('xemthem');
 
 // Route::get('/events', [
 //     'as'=>'events.index',
@@ -127,18 +132,22 @@ Route::get('sukien','EventsController@sukien')->name('sukien');
 //
 
 // ----------------Không xóa-------------------
-// Route::get('test',function(){
-//     $data = App\phong::find('3')->ghichu()->get()->toArray();
-//     echo count($data);
-//     // $data = App\phong::all();
+Route::get('test',function(){
+    //     $data = App\phong::find('3')->ghichu()->get()->toArray();
+    //     echo count($data);
+    //     // $data = App\phong::all();
 
 
-//     // $data = App\phong::find($r1->id)->ghichu()->get()->toArray();
-//     echo '<pre>';
-//     print_r($data);
-//     echo '</pre>';
-//     // return view('dashboard.employees.empty_room');
-// });
+    //     // $data = App\phong::find($r1->id)->ghichu()->get()->toArray();
+    //     echo '<pre>';
+    //     print_r($data);
+    //     echo '</pre>';
+    $data = App\phong::find('3');
+    echo var_dump($data->songuoi);
+    echo $songuoi = (string)$data->songuoi;
+    echo var_dump($songuoi);
+    // return view('dashboard.employees.how');
+});
 Route::prefix("/employee")->middleware(['employee','auth'])->group(function(){
 
 
@@ -165,14 +174,13 @@ Route::prefix("/employee")->middleware(['employee','auth'])->group(function(){
         'uses'=>'EventsController@update'
     ]);
     Route::get('events/{id}','EventsController@show')->name('show');
-    
-    Route::get('xemthem/{id}','EventsController@xemthem')->name('xemthem');
-    
+
+
     Route::delete('/events/delete/{id}',[
         'as' => 'events.delete',
         'uses' => 'EventsController@destroy'
     ]);
-        
+
         //ý kiến
         Route::get('/adcontact', [
         'as'=>'contact.index',
@@ -189,12 +197,6 @@ Route::prefix("/employee")->middleware(['employee','auth'])->group(function(){
 
     //Update chọn phòng
     Route::get('updatechonphong','RoomController@updatechonphong')->name('employee.updatechonphong');
-
-    //dừng lại quá lâu
-    Route::get('delay/{id}','RoomController@xoadelay')->name('employee.delay');
-
-    //hủy chọn phòng
-    Route::get('huy/{id}','RoomController@huychonphong')->name('employee.huy');
 
     //Ghi chú
     Route::get('ghichu','RoomController@ghichu')->name('employee.ghichu');

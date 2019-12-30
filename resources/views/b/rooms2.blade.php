@@ -24,22 +24,27 @@
         <div class="row">
 
           <div class="col-md-12 col-lg-8 mb-5">
-              <a href="#" class="d-block mb-0 thumbnail"><img src="public/images/img_1.jpg" alt="Image" class="img-fluid"></a>
+              <a href="#" class="d-block mb-0 thumbnail"><img src="public/images/img_2.jpg" alt="Image" class="img-fluid"></a>
           </div>
           <div class="col-lg-4">
               <div class="p-4 mb-3 bg-white">
-                  <h2 class="h5 text-black mb-3">Phòng Superior Đôi</h2>
+                  <h2 class="h5 text-black mb-3">Phòng Trader</h2>
 
                   <p class="mb-4">- Các phòng máy lạnh được trang bị truyền hình cáp màn hình phẳng, minibar và tủ quần áo. Phòng tắm riêng đi kèm với vòi sen, đồ vệ sinh cá nhân miễn phí và máy sấy tóc. Dép cũng được cung cấp cho khách.</p>
 
                   <p class="mb-0">- WiFi miễn phí có trong tất cả các phòng.</p>
-
+                  <p class="mb-0">- Theo giờ: 80.000đ (2 giờ ).</p>
+                  <p class="mb-0">- Theo ngày: 250.000đ.</p>
 
                 </div>
                 <div class="row form-group">
-                  <div class="col-md-12">
-                   <a href="{{route('employee.bookroom.store.get.khach')}}"><input type="submit" value="Đặt phòng" class="btn btn-primary pill px-4 py-2"></a>
-                  </div>
+                    <div class="col-md-12">
+                        <form action="{{route('employee.bookroom.store.get.khach')}}" method="get">
+                        <input type="hidden" name="nameRoom" value="Trader">
+                        <input type="hidden" name="number" value="3">
+                        <input type="submit" value="Đặt phòng" class="btn btn-primary pill px-4 py-2">
+                        </form>
+                    </div>
                 </div>
 
           </div>

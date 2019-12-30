@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class phong extends Model
 {
     protected $table = 'phong';
-    protected $fillable = ['maP', 'tenP', 'loaiP', 'hour', 'day', 'tinhtrang', 'maDV', 'maNV', 'trong','id'];
+    protected $fillable = ['maP', 'tenP', 'loaiP', 'hour', 'day', 'tinhtrang', 'maDV', 'maNV', 'trong','id','songuoi'];
 
     public function dichvu()
     {

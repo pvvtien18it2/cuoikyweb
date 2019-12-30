@@ -1,15 +1,22 @@
-/* table .btn-group .dropdown-menu .row #btn-action{
+        /* table .btn-group .dropdown-menu .row #btn-action{
     width: 110px;
     margin: auto;
 } */
-a{
-    text-decoration: none;
-}
-table .btn-group button{
-    width: 170px;
-    margin-left: 65px;
 
-}
+        a {
+            text-decoration: none;
+        }
 
+        table .btn-group button {
+            width: 170px;
+            margin-left: 30px;
+        }
 
+        #btn-action {
+            margin-left: 50px;
+        }
 
+        #btn-none {
+            width: 100px;
+            right: 14px;
+        }

@@ -99,9 +99,9 @@ if ($days <= 0){ $count++; } @endphp @endforeach <!DOCTYPE html>
             <script src="{{asset('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')}}"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
                 crossorigin="anonymous"></script>
-            {{-- <script src="{{ asset('resources/js/app.js') }}"></script>
+            <script src="{{ asset('resources/js/app.js') }}"></script>
             <script src="{{ asset('resources/js/bootstrap.min.js') }}"></script>
-            <script src="{{ asset('resources/js/jquery.min.js') }}"></script> --}}
+            <script src="{{ asset('resources/js/jquery.min.js') }}"></script>
             @yield('js')
         </body>
 

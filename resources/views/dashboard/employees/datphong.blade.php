@@ -12,6 +12,9 @@
         <div class="row">
             <h2 style="text-align: center; margin: 20px auto; font-size: 50px">Đặt phòng</h2>
         </div>
+        @php
+            use Carbon\Carbon;
+        @endphp
         @if (session('noteBookRoom'))
                 <div class="alert alert-danger alert-dismissible fade show" style="margin: auto ; text-align: center">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -47,14 +50,21 @@
         <div class="alert alert-danger alert-dismissible fade show" style="margin: auto ; text-align: left">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <div class="col-md-7 offset-md-5">
-                    {!! $errors->first('txtName') !!}<br>
-                    {!! $errors->first('txtCMND') !!}<br>
-                    {!! $errors->first('txtNumber') !!}<br>
-                    {!! $errors->first('txtCallNumber') !!}<br>
-                    {!! $errors->first('txtBookRoom') !!}<br>
-                    {!! $errors->first('txtOutRoom') !!}<br>
-                </div>
-            </div>
+                        @if ($errors->first('txtName'))
+                        {!! $errors->first('txtName') !!}<br>
+                        @elseif($errors->first('txtCMND'))
+                        {!! $errors->first('txtCMND') !!}<br>
+                        @elseif($errors->first('txtNumber'))
+                        {!! $errors->first('txtNumber') !!}<br>
+                        @elseif($errors->first('txtCallNumber'))
+                        {!! $errors->first('txtCallNumber') !!}<br>
+                        @elseif($errors->first('txtBookRoom'))
+                        {!! $errors->first('txtBookRoom') !!}<br>
+                        @elseif($errors->first('txtOutRoom'))
+                        {!! $errors->first('txtOutRoom') !!}<br>
+                        @endif
+                    </div>
+        </div>
         @endif
 
         <div class="row">
@@ -69,31 +79,48 @@
                 <div class="form-group row">
                     <label for="Chứng minh nhân dân" class="col-md-5 col-form-label">Chứng minh nhân dân</label>
                     <div class="col-md-7">
-                        <input class="form-control" type="text" name="txtCMND" placeholder="Nhập số chứng minh nhân dân">
+                        <input class="form-control" type="number"  name="txtCMND" placeholder="Nhập số chứng minh nhân dân">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="Số điện thoại" class="col-md-5 col-form-label">Số điện thoại</label>
                     <div class="col-md-7">
-                        <input class="form-control" type="text" name="txtCallNumber" placeholder="Nhập số điện thoại">
+                        <input class="form-control" type="number" name="txtCallNumber" placeholder="Nhập số điện thoại">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="Số khách" class="col-md-5 col-form-label">Số khách</label>
                     <div class="col-md-7">
-                        <input class="form-control" type="text" name="txtNumber" placeholder="Nhập số người ở">
+                        <input class="form-control" type="number" name="txtNumber" placeholder="Nhập số người ở">
                     </div>
                 </div>
+                @php
+                    $noonToday = Carbon::parse('noon today');
+                    $noonToday->addHour(12);
+                    if($noonToday->isPast()){
+                        $noonToday = Carbon::tomorrow();
+                        $noonToday->addHour(12);
+                        $noonTomorrow = Carbon::tomorrow()->addDay(1);
+                        $noonTomorrow->addHour(12);
+                    }
+                    else{
+                        $noonTomorrow = Carbon::tomorrow();
+                        $noonTomorrow->addHour(12);
+                    }
+
+                    $noonToday = $noonToday->format("Y-m-d\TH:i:s");
+                    $noonTomorrow = $noonTomorrow->format("Y-m-d\TH:i:s");
+                @endphp
                 <div class="form-group row">
                     <label for="Ngày nhận phòng" class="col-md-5 col-form-label">Ngày nhận phòng</label>
                     <div class="col-md-7">
-                        <input class="form-control" type="datetime-local" name="txtBookRoom">
+                        <input class="form-control" type="datetime-local" name="txtBookRoom" value={{$noonToday}}>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="Ngày trả phòng" class="col-md-5 col-form-label">Ngày trả phòng</label>
                     <div class="col-md-7">
-                        <input class="form-control" type="datetime-local" name="txtOutRoom">
+                        <input class="form-control" type="datetime-local" name="txtOutRoom" value={{$noonTomorrow}}>
                     </div>
                 </div>
                 <div class="row">

@@ -8,124 +8,60 @@
         <base href="{{asset('')}}">
         <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Work+Sans:300,400,700"
             rel="stylesheet">
-        <link rel="stylesheet" href="public/fonts/icomoon/style.css">
+        <link rel="stylesheet" href="resources/fonts/icomoon/style.css">
 
-        <link rel="stylesheet" href="public/css/bootstrap.min.css">
-        <link rel="stylesheet" href="public/css/magnific-popup.css">
-        <link rel="stylesheet" href="public/css/jquery-ui.css">
-        <link rel="stylesheet" href="public/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="public/css/owl.theme.default.min.css">
-        <link rel="stylesheet" href="public/css/bootstrap-datepicker.css">
-        <link rel="stylesheet" href="public/css/animate.css">
-        {{-- <link rel="stylesheet" href=" {{ asset('resources/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href=" {{ asset('resources\dashboard\employees\select_room.css') }}"> --}}
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/css/magnific-popup.css">
+        <link rel="stylesheet" href="resources/css/jquery-ui.css">
+        <link rel="stylesheet" href="resources/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="resources/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="resources/css/bootstrap-datepicker.css">
+        <link rel="stylesheet" href="resources/css/animate.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
 
 
 
-        <link rel="stylesheet" href="public/fonts/flaticon/font/flaticon.css">
+        <link rel="stylesheet" href="resources/fonts/flaticon/font/flaticon.css">
 
-        <link rel="stylesheet" href="public/css/aos.css">
+        <link rel="stylesheet" href="resources/css/aos.css">
 
-        <link rel="stylesheet" href="public/css/style.css">
+        <link rel="stylesheet" href="resources/css/style.css">
 
     </head>
 
     <body>
 
-        <div class="site-wrap">
-
-            <div class="site-mobile-menu">
-                <div class="site-mobile-menu-header">
-                    <div class="site-mobile-menu-close mt-3">
-                        <span class="icon-close2 js-menu-toggle"></span>
-                    </div>
-                </div>
-                <div class="site-mobile-menu-body"></div>
-            </div> <!-- .site-mobile-menu -->
-
-
-            <div class="site-navbar-wrap js-site-navbar bg-white">
-
-                <div class="container">
-                    <div class="site-navbar bg-light">
-                        <div class="py-1">
-                            <div class="row align-items-center">
-                                <div class="col-2">
-                                    <h2 class="mb-0 site-logo"><a href="{{route('trangchu')}}">Hoang Hon</a></h2>
-                                </div>
-                                <div class="col-10">
-                                    <nav class="site-navigation text-right" role="navigation">
-                                        <div class="container">
-
-                                            <div class="d-inline-block d-lg-none  ml-md-0 mr-auto py-3"><a href="#"
-                                                    class="site-menu-toggle js-menu-toggle"><span
-                                                        class="icon-menu h3"></span></a></div>
-                                            <div class="d-inline-block d-lg-none  ml-md-0 mr-auto py-3"><a href="#"
-                                                    class="site-menu-toggle js-menu-toggle"><span
-                                                        class="icon-menu h3"></span></a></div>
-                                            <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                                <li>
-                                                    <a href="{{route('trangchu')}}">Trang chủ</a></li>
-                                                <li><a href="{{route('sukien')}}">Sự kiện</a></li>
-                                                <li class="active"><a
-                                                        href="{{route('employee.bookroom.store.get.khach')}}">Đặt
-                                                        phòng</a></li>
-                                                <li><a href="{{route('lienhe')}}">Liên hệ</a></li>
-                                                <li><a href="{{route('login')}}">Đăng nhập</a></li>
-                                            </ul>
-                                        </div>
-                                </div>
-                                </nav>
-                            </div>
+        <div class="container-fluid" style="height: 80px ;background-color: grey">
+            <div class="site-navbar bg-light">
+                <div class="py-1">
+                    <div class="row align-items-center">
+                        <div class="col-2">
+                            <h2 class="mb-0 site-logo"><a href="{{route('trangchu')}}">Hoang Hon</a></h2>
                         </div>
+                        <div class="col-10">
+                            <nav class="site-navigation text-right" role="navigation">
+                                <div class="container">
+
+                                    <div class="d-inline-block d-lg-none  ml-md-0 mr-auto py-3"><a href="#"
+                                            class="site-menu-toggle js-menu-toggle"><span class="icon-menu h3"></span></a></div>
+                                    <div class="d-inline-block d-lg-none  ml-md-0 mr-auto py-3"><a href="#"
+                                            class="site-menu-toggle js-menu-toggle"><span class="icon-menu h3"></span></a></div>
+                                    <ul class="site-menu js-clone-nav d-none d-lg-block">
+                                        <li>
+                                            <a href="{{route('trangchu')}}">Trang chủ</a></li>
+                                        <li><a href="{{route('sukien')}}">Sự kiện</a></li>
+                                        <li class="active"><a href="{{route('employee.bookroom.store.get.khach')}}">Đặt
+                                                phòng</a></li>
+                                        <li><a href="{{route('lienhe')}}">Liên hệ</a></li>
+                                        <li><a href="{{route('login')}}">Đăng nhập</a></li>
+                                    </ul>
+                                </div>
+                        </div>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <div class="slide-one-item home-slider owl-carousel">
-
-            <div class="site-blocks-cover overlay" style="background-image: url(public/images/hero_1.jpg);"
-                data-aos="fade" data-stellar-background-ratio="0.5">
-                <div class="container">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-md-7 text-center" data-aos="fade">
-
-                            <h1 class="mb-2">Welcome</h1>
-                            <h2 class="caption">Hotel &amp; Resort</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="site-blocks-cover overlay" style="background-image: url(public/images/hero_2.jpg);"
-                data-aos="fade" data-stellar-background-ratio="0.5">
-                <div class="container">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-md-7 text-center" data-aos="fade">
-                            <h1 class="mb-2">Unique Experience</h1>
-                            <h2 class="caption">Enjoy With Us</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="site-blocks-cover overlay" style="background-image: url(public/images/hero_3.jpg);"
-                data-aos="fade" data-stellar-background-ratio="0.5">
-                <div class="container">
-                    <div class="row align-items-center justify-content-center">
-                        <div class="col-md-7 text-center" data-aos="fade">
-                            <h1 class="mb-2">Relaxing Room</h1>
-                            <h2 class="caption">Your Room, Your Stay</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
 
         <div class="container">
             <div class="row">
@@ -166,12 +102,19 @@
             <div class="alert alert-danger alert-dismissible fade show" style="margin: auto ; text-align: left">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <div class="col-md-7 offset-md-5">
-                    {!! $errors->first('txtName') !!}<br>
-                    {!! $errors->first('txtCMND') !!}<br>
-                    {!! $errors->first('txtNumber') !!}<br>
-                    {!! $errors->first('txtCallNumber') !!}<br>
-                    {!! $errors->first('txtBookRoom') !!}<br>
-                    {!! $errors->first('txtOutRoom') !!}<br>
+                    @if ($errors->first('txtName'))
+                        {!! $errors->first('txtName') !!}<br>
+                    @elseif($errors->first('txtCMND'))
+                        {!! $errors->first('txtCMND') !!}<br>
+                    @elseif($errors->first('txtNumber'))
+                        {!! $errors->first('txtNumber') !!}<br>
+                    @elseif($errors->first('txtCallNumber'))
+                        {!! $errors->first('txtCallNumber') !!}<br>
+                    @elseif($errors->first('txtBookRoom'))
+                        {!! $errors->first('txtBookRoom') !!}<br>
+                    @elseif($errors->first('txtOutRoom'))
+                        {!! $errors->first('txtOutRoom') !!}<br>
+                    @endif
                 </div>
             </div>
             @endif
@@ -189,35 +132,58 @@
                     <div class="form-group row">
                         <label for="Chứng minh nhân dân" class="col-md-5 col-form-label">Chứng minh nhân dân</label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" name="txtCMND"
+                            <input class="form-control" type="number"  name="txtCMND"
                                 placeholder="Nhập số chứng minh nhân dân">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="Số điện thoại" class="col-md-5 col-form-label">Số điện thoại</label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" name="txtCallNumber"
+                            <input class="form-control" type="number" name="txtCallNumber"
                                 placeholder="Nhập số điện thoại">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="Số khách" class="col-md-5 col-form-label">Số khách</label>
                         <div class="col-md-7">
-                            <input class="form-control" type="text" name="txtNumber" placeholder="Nhập số người ở">
+                        @if (isset($number))
+                            <input class="form-control" type="text" name="txtNumber" readonly='false' value="{{$number}}">
+                        @else
+                            <input class="form-control" type="number" name="txtNumber" placeholder="Vui lòng nhập số người ở">
+                        @endif
                         </div>
                     </div>
+                    @php
+                    use Carbon\Carbon;
+                    $noonToday = Carbon::parse('noon today');
+                    $noonToday->addHour(12);
+                    if($noonToday->isPast()){
+                    $noonToday = Carbon::tomorrow();
+                    $noonToday->addHour(12);
+                    $noonTomorrow = Carbon::tomorrow()->addDay(1);
+                    $noonTomorrow->addHour(12);
+                    }
+                    else{
+                    $noonTomorrow = Carbon::tomorrow();
+                    $noonTomorrow->addHour(12);
+                    }
+
+                    $noonToday = $noonToday->format("Y-m-d\TH:i:s");
+                    $noonTomorrow = $noonTomorrow->format("Y-m-d\TH:i:s");
+                    @endphp
                     <div class="form-group row">
                         <label for="Ngày nhận phòng" class="col-md-5 col-form-label">Ngày nhận phòng</label>
                         <div class="col-md-7">
-                            <input class="form-control" type="datetime-local" name="txtBookRoom">
+                            <input class="form-control" type="datetime-local" name="txtBookRoom" value={{$noonToday}}>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="Ngày trả phòng" class="col-md-5 col-form-label">Ngày trả phòng</label>
                         <div class="col-md-7">
-                            <input class="form-control" type="datetime-local" name="txtOutRoom">
+                            <input class="form-control" type="datetime-local" name="txtOutRoom" value={{$noonTomorrow}}>
                         </div>
                     </div>
+                    <input type="hidden" name="tenP" value="{{$tenP}}">
                     <div class="row">
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-left: 70%">
                             <button class="btn btn-success" type="submit">Hoàn thành</button>
@@ -235,22 +201,22 @@
 
 
         </script>
-        <script src="public/js/jquery-3.3.1.min.js"></script>
-        <script src="public/js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="public/js/jquery-ui.js"></script>
-        <script src="public/js/popper.min.js"></script>
-        <script src="public/js/bootstrap.min.js"></script>
-        <script src="public/js/owl.carousel.min.js"></script>
-        <script src="public/js/jquery.stellar.min.js"></script>
-        <script src="public/js/jquery.countdown.min.js"></script>
-        <script src="public/js/jquery.magnific-popup.min.js"></script>
-        <script src="public/js/bootstrap-datepicker.min.js"></script>
-        <script src="public/js/aos.js"></script>
+        <script src="resources/js/jquery-3.3.1.min.js"></script>
+        <script src="resources/js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="resources/js/jquery-ui.js"></script>
+        <script src="resources/js/popper.min.js"></script>
+        <script src="resources/js/bootstrap.min.js"></script>
+        <script src="resources/js/owl.carousel.min.js"></script>
+        <script src="resources/js/jquery.stellar.min.js"></script>
+        <script src="resources/js/jquery.countdown.min.js"></script>
+        <script src="resources/js/jquery.magnific-popup.min.js"></script>
+        <script src="resources/js/bootstrap-datepicker.min.js"></script>
+        <script src="resources/js/aos.js"></script>
 
 
-        <script src="public/js/mediaelement-and-player.min.js"></script>
+        <script src="resources/js/mediaelement-and-player.min.js"></script>
 
-        <script src="public/js/main.js"></script>
+        <script src="resources/js/main.js"></script>
 
 
         <script>

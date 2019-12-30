@@ -25,7 +25,7 @@ class DatPhongTruocRequest extends FormRequest
     {
         return [
             'txtName' =>'required',
-            'txtCMND' => 'required|numeric',
+            'txtCMND' => 'required|numeric|max:999999999',
             'txtNumber' => 'required|numeric',
             'txtCallNumber' => 'required|numeric',
             'txtBookRoom' => 'required',
@@ -38,6 +38,7 @@ class DatPhongTruocRequest extends FormRequest
             'txtName.required' => 'Vui lòng nhập họ và tên',
             'txtCMND.required' => 'Vui lòng nhập số chứng minh nhân dân',
             'txtCMND.numeric'  => 'Chứng minh nhân dân là chuổi các số',
+            'txtCMND.max'  => 'Chứng minh nhân dân là chuổi 9 chữ số',
             'txtNumber.required' => 'Vui lòng nhập số người cùng chung phòng',
             'txtNumber.numeric' => 'Số người ở là số',
             'txtCallNumber.required' => 'Vui lòng nhập họ và tên',

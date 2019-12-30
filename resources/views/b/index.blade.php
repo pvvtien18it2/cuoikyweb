@@ -26,53 +26,39 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-lg-4 mb-5">
+        <div class="col-md-6 col-lg-3 mb-5">
         <div class="hotel-room text-center">
-            <a href="{{route('phong')}}" class="d-block mb-0 thumbnail"><img src="public/images/img_1.jpg" alt="Image" class="img-fluid"></a>
+            <a href="{{route('phong1')}}" class="d-block mb-0 thumbnail"><img src="public/images/img_1.jpg" alt="Image" class="img-fluid"></a>
             <div class="hotel-room-body">
-            <h3 class="heading mb-0"><a href="{{route('phong')}}">Phòng Twin Deluxe</a></h3>
-            <strong class="price">50.000đ / một đêm</strong>
+            <h3 class="heading mb-0"><a href="{{route('phong1')}}">Phòng Popularly</a></h3>
             </div>
         </div>
         </div>
-        <div class="col-md-6 col-lg-4 mb-5">
+        <div class="col-md-6 col-lg-3 mb-5">
         <div class="hotel-room text-center">
-            <a href="#" class="d-block mb-0 thumbnail"><img src="public/images/img_2.jpg" alt="Image" class="img-fluid"></a>
+            <a href="{{route('phong2')}}" class="d-block mb-0 thumbnail"><img src="public/images/img_2.jpg" alt="Image" class="img-fluid"></a>
             <div class="hotel-room-body">
-            <h3 class="heading mb-0"><a href="#">Phòng Suite Twin</a></h3>
-            <strong class="price">500.000đ / một đêm</strong>
+            <h3 class="heading mb-0"><a href="{{route('phong2')}}">Phòng Trader</a></h3>
             </div>
         </div>
         </div>
-        <div class="col-md-6 col-lg-4 mb-5">
+        <div class="col-md-6 col-lg-3 mb-5">
         <div class="hotel-room text-center">
-            <a href="#" class="d-block mb-0 thumbnail"><img src="public/images/img_3.jpg" alt="Image" class="img-fluid"></a>
+            <a href="{{route('phong3')}}" class="d-block mb-0 thumbnail"><img src="public/images/img_3.jpg" alt="Image" class="img-fluid"></a>
             <div class="hotel-room-body">
-            <h3 class="heading mb-0"><a href="#">Phòng SJunior Suite đôi</a></h3>
-            <strong class="price">250.000đ / một đêm</strong>
-            </div>
-        </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-5">
-        <div class="hotel-room text-center">
-            <a href="#" class="d-block mb-0 thumbnail"><img src="public/images/img_1.jpg" alt="Image" class="img-fluid"></a>
-            <div class="hotel-room-body">
-            <h3 class="heading mb-0"><a href="#">Phòng Grand Suite đôi</a></h3>
-            <strong class="price">300.000đ / một đêm</strong>
-            </div>
-        </div>
-        </div>
-        <div class="col-md-6 col-lg-4 mb-5">
-        <div class="hotel-room text-center">
-            <a href="#" class="d-block mb-0 thumbnail"><img src="public/images/img_2.jpg" alt="Image" class="img-fluid"></a>
-            <div class="hotel-room-body">
-            <h3 class="heading mb-0"><a href="#">Phòng Superior Đôi</a></h3>
-            <strong class="price">800.000đ / một đêm</strong>
+            <h3 class="heading mb-0"><a href="{{route('phong3')}}">Phòng Vip</a></h3>
             </div>
         </div>
         </div>
 
+        <div class="col-md-6 col-lg-3 mb-5">
+        <div class="hotel-room text-center">
+            <a href="{{route('phong4')}}" class="d-block mb-0 thumbnail"><img src="public/images/img_1.jpg" alt="Image" class="img-fluid"></a>
+            <div class="hotel-room-body">
+            <h3 class="heading mb-0"><a href="{{route('phong4')}}">Phòng Royal</a></h3>
+            </div>
+        </div>
+        </div>
     </div>
     </div>
 </div>
