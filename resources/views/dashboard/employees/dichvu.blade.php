@@ -88,7 +88,7 @@
                                     {!! 'Ngày' !!}
                                 @endif
                             </td>
-                            <td colspan="1"><input type="text" value="0" name="{!! 'hidden_sl_'.$dv->id !!}"></td>
+                            <td colspan="1"><input type="number" value="0" name="{!! 'hidden_sl_'.$dv->id !!}"></td>
                         </tr>
                     @endforeach
 

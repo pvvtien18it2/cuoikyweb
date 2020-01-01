@@ -47,14 +47,14 @@
                     <label for="Chứng minh nhân dân" class="col-md-5 col-form-label">Chứng minh nhân dân</label>
                     <div class="col-md-7">
                         {!! $errors->first('txtCMND') !!}
-                        <input class="form-control " type="text" name="txtCMND" placeholder="Nhập chứng minh nhân dân tại đây">
+                        <input class="form-control " type="number" name="txtCMND" placeholder="Nhập chứng minh nhân dân tại đây">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="Số người" class="col-md-5 col-form-label">Số người</label>
                     <div class="col-md-7">
                         {!! $errors->first('txtNumber') !!}
-                        <input class="form-control " type="text" name="txtNumber" placeholder="Nhập số người tại đây">
+                        <input class="form-control " type="number" name="txtNumber" placeholder="Nhập số người tại đây">
                     </div>
                 </div>
                 <input type="hidden" value="{{$book_room->id}}" name="phong_id">
